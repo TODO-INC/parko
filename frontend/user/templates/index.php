@@ -163,7 +163,7 @@ include "../libs/load.php";
     <div class="card">
       <div class="card-header">
         <button type="button" class="btn btn-primary" id="showList" data-target="content1">Show List</button>
-        <button type="button" class="btn btn-primary" id="showMap" data-target="content2">Show Map</button>
+        <button type="button" class="btn btn-primary" id="showMap" data-target="content2" onclick="showmap()">Show Map</button>
       </div>
       <div class="card-body">
         <div id="content1" class="content" style="display: none;">
