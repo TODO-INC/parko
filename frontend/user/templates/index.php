@@ -15,22 +15,33 @@ include "../libs/load.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
-    <script src="vendor/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/frontend/host/css/header.css">
-    <link rel="stylesheet" href="/frontend/host/css/footer.css">
-    <link rel="stylesheet" href="/frontend/host/css/index.css">
+    <script src="../vendor/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
   </head>
 
 <body>
   <!-- header -->
-  {% include "header.php" %}
+    <?php load_temp("header.php"); ?>
 
     <!-- jumbotron -->
-    <div class="p-5 mb-4 rounded-3 jumbo-tron-container">
+    <!-- <div class="p-5 mb-4 rounded-3 jumbo-tron-container">
       <div class="container-fluid py-5 jumbo-tron">
         <h1 class="display-6 fw-bold">Hello Host</h1>
         <p class="col-md-8 fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, corporis enim, ex itaque temporibus laudantium sunt ab earum officiis eum laboriosam eius nam </p>
         <a class="btn btn-primary btn-lg" href="listing.php">Listing</a>
+      </div>
+    </div> -->
+    <div class="container search-space">
+      <div class="input-group">
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" />
+          <label class="form-label" for="form1">Search</label>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="bi bi-search"></i>
+        </button>
       </div>
     </div>
 
@@ -178,8 +189,7 @@ include "../libs/load.php";
             </div>
         </div>
     </div>
-
-    {% include "footer.php" %}
+    <?php load_temp("footer.php"); ?>
     <!-- Add the Bootstrap JS and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
