@@ -56,6 +56,7 @@
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 											<a type="button" class="btn btn-info">Parked In</a>
 										</div>
 									</div>
@@ -67,6 +68,7 @@
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 											<a type="button" class="btn btn-info">Parked In</a>
 										</div>
 									</div>
@@ -78,6 +80,7 @@
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 											<a type="button" class="btn btn-info">Parked In</a>
 										</div>
 									</div>
@@ -94,7 +97,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -104,7 +108,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -114,7 +119,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -130,7 +136,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -140,7 +147,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -150,7 +158,8 @@
 											<h5 class="card-title">Vehicle number</h5>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
-											<h7 class="card-text">Time</h7>
+											<h7 class="card-text">Time</h7><br />
+											<h7 class="card-text">Contact</h7><br />
 										</div>
 									</div>
 								</div>
@@ -179,30 +188,28 @@
                     $('.btn').removeClass('active');
                     $(this).addClass('active');
                 });
+			});
 
-                const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+			const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+				moonIcon.style.display = 'none';
+				sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+				moonIcon.style.display = 'inline-block';
+				sunIcon.style.display = 'none';
+            }
+        }
+		function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -219,12 +226,28 @@
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
-            });
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
+            
 		</script>
 	</body>
 </html>
+

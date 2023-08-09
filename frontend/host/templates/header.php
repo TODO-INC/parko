@@ -13,9 +13,9 @@
     <li class="nav-item light mx-2">
         <a class="nav-link light" href="index.php">Home</a>
     </li>
-    <li class="nav-item light mx-2">
-        <a class="nav-link light" href="manage.php">Calendar</a>
-    </li>
+    <!-- <li class="nav-item light mx-2">
+        <a class="nav-link light" href="calender.php">Calendar</a>
+    </li> -->
     <li class="nav-item light mx-2">
         <a class="nav-link light" href="listing.php">Listing</a>
     </li>
@@ -36,6 +36,8 @@
 						</label>
 					</div>
 				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
 				<li class="nav-item dropdown light">
 					<a class="nav-link dropdown-toggle light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<span class="bi bi-person light"></span>

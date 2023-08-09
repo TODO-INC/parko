@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .day {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+  .highlighted {
+    background-color: #ffcccb;
+  }
+  .selected {
+    background-color: #aaffaa;
+  }
+  .blocked {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  .current-day {
+    background-color: #ffff99;
+  }
+  .event-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 2px 5px;
+    cursor: pointer;
+  }
+  
+  .event-set {
+    background-color: #337ab7;
+  }
+  .controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .controls button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #337ab7;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .controls button:hover {
+    background-color: #135589;
+  }
+  h1 {
+    color: #337ab7;
+  }
+  .input-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  .input-card h2 {
+    margin-top: 0;
+  }
+  .input-card label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .input-card input[type="text"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .input-card button {
+    padding: 6px 12px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .popup-card {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1; /* Ensure it's above the calendar */
+  }
+
+  .popup-content {
+    width: 800px; /* Adjust the max-width as needed */
+    overflow: 100; /* Enable scrolling if content exceeds container */
+    height:50vh;
+  }
+  .popup-card {
+display: none;
+position: absolute;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 15px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+z-index: 1; /* Ensure it's above the calendar */
+left: 50%; /* Center horizontally */
+transform: translateX(-50%); /* Adjust for centering */
+}
+
+.popup-content {
+/* Adjust the max-width as needed */
+max-width: 800px;
+overflow-y: auto; /* Enable scrolling if content exceeds container height */
+max-height: 60vh; /* Adjust the max-height as needed */
+}

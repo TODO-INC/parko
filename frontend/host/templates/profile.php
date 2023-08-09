@@ -75,9 +75,9 @@
                                 <h4 class="mt-3 light" style="text-align: center;">Parkings</h4>
 								<hr />
 								<p id="number1"></p>
-								<p id="numberFour">Four-wheelers: 102</p>
-								<p id="numberTwo">Two-wheelers: 737</p>
-								<p id="numberBi">Bicycle: 321</p>
+								<p id="numberFour"></p>
+								<p id="numberTwo"></p>
+								<p id="numberBi"></p>
 							</div>
 						</div>
 					</div>
@@ -87,9 +87,9 @@
                             <h4 class="mt-3 light" style="text-align: center;">Earnings</h4>
 								<hr />
 								<p id="number2"></p>
-								<p id="numberService">Service Charge: - ₹2586</p>
-								<p id="numberGst">GST: - ₹1760.22</p>
-								<p id="numberNet">Net Earnings: ₹8018.78</p>
+								<p id="numberService"></p>
+								<p id="numberGst"></p>
+								<p id="numberNet"></p>
 							</div>
 						</div>
 					</div>
@@ -156,29 +156,26 @@
 		<script src="../js/profile.js"></script>
 		<script>
 
-                const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+				moonIcon.style.display = 'none';
+				sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+				moonIcon.style.display = 'inline-block';
+				sunIcon.style.display = 'none';
+            }
+        }
+		function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -195,11 +192,26 @@
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
 		</script>
 	</body>
 </html>

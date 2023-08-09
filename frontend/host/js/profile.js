@@ -87,11 +87,33 @@ function handleSelectionChange() {
   // For this example, we will just update the numbers with dummy data.
 
   // Dummy data, replace this with your actual data from the database.
-  var dummyNumber1 = "Total : 1160";
-  var dummyNumber2 = "Total : ₹ 12365";
+  var dummyNumber1 = 1160;
+  var four = 102;
+  var two =  737;
+  var bi = 321;
 
-  document.getElementById("number1").textContent = dummyNumber1;
-  document.getElementById("number2").textContent = dummyNumber2;
+
+
+  var dummyNumber2 = 12345;
+  var serviceCharge = 0.15 * dummyNumber2;
+  var gst = 0.18 * (dummyNumber2 - serviceCharge);
+  var net = dummyNumber2 - serviceCharge - gst;
+  
+  // Round the calculated values to two decimal places
+  serviceCharge = parseFloat(serviceCharge.toFixed(2));
+  gst = parseFloat(gst.toFixed(2));
+  net = parseFloat(net.toFixed(2));
+
+  document.getElementById("number1").textContent = "Total vehicles: " + dummyNumber1;
+  document.getElementById("numberFour").textContent = "Four-wheelers: " +four;
+  document.getElementById("numberTwo").textContent = "Two-wheelers: " +two;
+  document.getElementById("numberBi").textContent = "Bicycle: " +bi;
+
+
+  document.getElementById("number2").textContent = "Total: Rs. "+(dummyNumber2);
+  document.getElementById("numberService").textContent = "Service Charge: - Rs. "+(serviceCharge);
+  document.getElementById("numberGst").textContent = "GST: - Rs. "+gst;
+  document.getElementById("numberNet").textContent = "Net Earnings: Rs. "+net;
 }
 
 // Add event listeners to the select dropdowns to handle changes

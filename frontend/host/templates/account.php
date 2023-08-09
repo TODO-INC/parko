@@ -89,7 +89,7 @@ include "../libs/load.php";
                         <p>Security policies of the Parko</p>
                     </button>
                     <div class="modal fade" id="securityModal" tabindex="-1" aria-labelledby="securityModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 							<div class="modal-content card-caro light">
 								<div class="modal-header">
 									<h1 class="modal-title fs-5" id="securityModalLabel">Security</h1>
@@ -145,7 +145,7 @@ include "../libs/load.php";
                         <p>Review payments, payouts methods</p>
                     </button>
                     <div class="modal fade " id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 							<div class="modal-content card-caro light">
 								<div class="modal-header">
 									<h1 class="modal-title fs-5" id="paymentModalLabel">Payment</h1>
@@ -179,7 +179,7 @@ include "../libs/load.php";
             <div class="row row-cols-1 row-cols-md-3 g-3 mt-2">
                 <div class="col">
                     <button type="button" data-bs-toggle="modal" class="card-button light" data-bs-target="#earningModal">
-                        <i class="bi bi-currency-rupee"></i>
+                        <i class="bi bi-wallet2"></i>
                         <h5 class="card-title">Earnings</h5>
                         <p>Your earnings and transactions</p>
                     </button>
@@ -192,10 +192,10 @@ include "../libs/load.php";
 								</div>
 								<div class="modal-body">
                                     <div class="card mb-2 mt-1 book-card">
-                                        <div class="card-header "></div>
+                                        <div class="card-header ">Wallet</div>
                                             <div class="card-body">
-                                                <p class="card-text">Total Earned</p>
-                                                <p class="card-text">₹5648</p>
+                                                <p class="card-text">Earned amount</p>
+                                                <p class="card-text">Rs. 5648</p>
                                             </div>
                                             <a href="#" class="btn btn-info">WithDraw</a>
                                         </div>
@@ -215,29 +215,26 @@ include "../libs/load.php";
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
 
-                const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+				moonIcon.style.display = 'none';
+				sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+				moonIcon.style.display = 'inline-block';
+				sunIcon.style.display = 'none';
+            }
+        }
+		function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -254,12 +251,26 @@ include "../libs/load.php";
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
-            
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
 		</script>
 	</body>
 </html>

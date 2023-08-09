@@ -33,7 +33,7 @@ include "../libs/load.php";
     <div class="container custom-container">
         <form class="custom-form">
         <div class="mb-2 custom-dropdown">
-            <label for="userType">Types of User:</label>
+            <label for="userType">Type of Parking:</label>
             <select class="form-select" id="userType" name="userType">
                 <option value="public">Public</option>
                 <option value="publicContracted">Public Contracted</option>
@@ -42,10 +42,25 @@ include "../libs/load.php";
             </select>
         </div>
 
+        <div class="mb-2 custom-dropdown">
+            <label for="workTime">Work Hours:</label>
+            <select class="form-select" id="userType" name="userType">
+                <option value="office">Office Time (9.00 AM  - 6.00 PM)</option>
+                <option value="home">Home Time (5.00 AM  - 10.00 PM)</option>
+                <option value="any">Anytime (24/7)</option>
+            </select>
+        </div>
+
+
+
 
         <div class="mb-2">
             <label for="spaceName" class="form-label">Name of your space</label>
             <input type="text" class="form-control" id="spaceName" required>
+        </div>
+        <div class="mb-2">
+            <label for="spaceDesc" class="form-label">Simple Description on your space</label>
+            <input type="text" class="form-control" id="spaceDesc" required>
         </div>
         <div class="mb-2">
             <label for="spaceSize" class="form-label">Space Size in Sq meter</label>
@@ -54,6 +69,10 @@ include "../libs/load.php";
         <div class="mb-2">
             <label for="spaceAddress" class="form-label">Address</label>
             <input type="text" class="form-control" id="spaceAddress" required>
+        </div>
+        <div class="mb-2">
+            <label for="spaceCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="spaceCity" required>
         </div>
         <div class="mb-2">
             <label for="spacePincode" class="form-label">Pin Code</label>
@@ -73,12 +92,24 @@ include "../libs/load.php";
         <div class="mb-2">
             <div class="row g-3 align-items-center">
                 <div class="col-6">
-                    <label for="spaceLength" class="col-form-label">Space Length</label>
+                    <label for="spaceLength" class="col-form-label">Space Length (In Meter)</label>
                     <input type="number" id="spaceLength" class="form-control"  min=15 required>
                 </div>
                 <div class="col-6">
-                    <label for="spaceWidth" class="col-form-label">Space Width</label>
+                    <label for="spaceWidth" class="col-form-label">Space Width (In Meter)</label>
                     <input type="number" id="spaceWidth" class="form-control"  min=7 required>
+                </div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="row g-3 align-items-center">
+                <div class="col-6">
+                    <label for="totalCar" class="col-form-label">Total cars can park at a time(Approx)</label>
+                    <input type="number" id="totalCar" class="form-control"  min=15 required>
+                </div>
+                <div class="col-6">
+                    <label for="totalBike" class="col-form-label">Total bikes can park at a time(Approx)</label>
+                    <input type="number" id="totalBike" class="form-control"  min=7 required>
                 </div>
             </div>
         </div>
@@ -156,7 +187,7 @@ include "../libs/load.php";
 </div>
 
         <div class="mb-2 mt-2 custom-checkboxes">
-            <label for="parkingTypes">Types of Parkings:</label>
+            <label for="parkingTypes">Types of ParkGuest accepted:</label>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="subscriptionUser" value="subscriptionUser">
                 <label class="form-check-label" for="subscriptionUser">Subscription User</label>
@@ -168,11 +199,11 @@ include "../libs/load.php";
         </div>
 
         <div class="mb-2">
-            <label for="spaceInstructions" class="form-label">Add instructions for the Guest</label>
-            <input type="textarea" class="form-control" id="spaceInstructions" required>
+            <label for="spaceInstructions" class="form-label">Add instructions for the ParkGuest</label>
+            <textarea type="text" class="form-control" id="spaceInstructions" required></textarea>
         </div>
 
-        <p>By clicking the 'Submit' button, you confirm that all the details are correct and accurate to the best of your knowledge. And also you agree to the <a href="#">security policy</a> and assure are not violating the terms and conditions. Thank you for providing the necessary information.</p>
+        <p>By clicking the 'Submit' button, you confirm that all the details are correct and accurate to the best of your knowledge. And also you agree to the security policy and assure are not violating the terms and conditions. Thank you for providing the necessary information.</p>
 
 
         <button id="submit" type="submit" class="btn btn-primary mt-2" onclick="validateFiles()">Submit</button>

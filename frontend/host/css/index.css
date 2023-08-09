@@ -3,132 +3,145 @@ body {
 }
 
 /* Light Theme */
+/* Light Theme */
 [data-bs-scheme="light"] {
-    background-color: #ffffff;
+    background-color: #f2f8f7;
 }
 
 .jumbotron-container.light {
-    background-color: #ffffff;
+    background-color: #f2f8f7;
 }
 
 .jumbotron.light {
-    background-color: #ffffff;
+    background-color: #f2f8f7;
 }
 
 .jumbotron p.light {
-    color: #272727;
+    color: #0e2521;
 }
 
 .jumbotron h2.light {
-    color: #0076BE;
+    color: #235c53;
 }
 
 .jumbotron .btn-primary.light {
-    border-color: #48BF91;
-    background-color: #48BF91;
+    border-color: #3b9b8b;
+    background-color: #3b9b8b;
     color: #ffffff;
 }
 
 .jumbotron .btn-primary.light:hover {
-    border-color: #6FB3B8;
+    border-color: #3b9b8b;
 }
 
 .custom-manage-card.light .card-header {
     text-align: center;
-    background-color: #C2EDCE;
-    border:none;
+    background-color: #f2f8f7;
+    border: none;
     color: #333333;
+}
+.custom-manage-card{
+    border: none;
 }
 
 .card-header .btn-primary.light {
-    background-color: #0076BE;
+    background-color: #3b9b8b;
+    border: none;
     color: whitesmoke;
 }
 
 .card-header .btn-primary.light:hover {
-    background-color: #4DB4D7;
+    background-color: #bce6df;
     color: whitesmoke;
 }
 
 .custom-card-body.light {
-    background-color: #F6F6F2;
-    color: #333333;
+    background-color: #f2f8f7;
     text-align: center;
     border: none;
 }
 
 .booked-card.light {
-    background-color: #388087;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
-    border: #388087;
-    color: whitesmoke;
+    background: rgba( 152, 216, 205, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #0e2521;
+}
+.booked-card .btn-info{
+    background-color: #235c53;
+    color: #ffffff;
+    border: none;
 }
 
 /* Dark Mode Styles */
 [data-bs-scheme="dark"] {
-    background-color: #272727;
+    background-color: #0e2521;
 }
 
 .jumbotron-container.dark {
-    background-color: #272727;
+    background-color: #0e2521;
 }
 
 .jumbotron.dark {
-    background-color: #272727;
+    background-color: #0e2521;
 }
 
 .jumbotron p.dark {
-    color: whitesmoke;
+    color: #f2f8f7;
 }
 
 .jumbotron h2.dark {
-    color: #48BF91;
+    color: #f2f8f7;
 }
 
 .jumbotron .btn-primary.dark {
-    border-color: #2C6D56;
-    background-color: #2C6D56;
-    color: #ffffff;
+    border-color: #1e5749;
+    background-color: #1e5749;
+    color: #f2f8f7;
 }
 
 .jumbotron .btn-primary.dark:hover {
-    border-color: #226678;
-}
-.custom-manage-card  .light{
-    border: none;
-}
-
-.custom-manage-card  .dark{
-    border-color: #5E8C76;
+    border-color: #1e5749;
 }
 
 .custom-manage-card.dark .card-header {
     text-align: center;
-    background-color: #5E8C76;
+    background-color: #0e2521;
     border: none;
     color: #ffffff;
 }
+.custom-manage-card.dark {
+    border: none;
+}
 
 .card-header .btn-primary.dark {
-    background-color: #005085;
+    background-color: #1e5749;
     color: whitesmoke;
+    border: none;
 }
 
 .card-header .btn-primary.dark:hover {
-    background-color: #3C7D82;
+    background-color: #1e5749;
     color: whitesmoke;
+
 }
 
 .custom-card-body.dark {
-    background-color: #272727;
+    background-color: #0e2521;
     color: #ffffff;
     text-align: center;
-    border-color: #272727;
+    border-color: #0e2521;
 }
 
 .booked-card.dark {
-    background-color: #0076BE;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
-    border: #0076BE;
-    color: whitesmoke;
+    background: rgba( 152, 216, 205, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #f2f8f7
 }

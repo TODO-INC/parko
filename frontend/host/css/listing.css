@@ -3,10 +3,10 @@ body{
 }
 
 [data-bs-scheme="light"] {
-    background-color: #ffffff;
+    background-color: #f2f8f7;
 }
 [data-bs-scheme="dark"] {
-    background-color: #272727;
+    background-color: #0e2521;
 }
 
 
@@ -15,28 +15,29 @@ body{
     width: 70%;
     margin: 15%;
     text-align: center;
-    border: 1px solid #388087;
+    border: 1px solid #294661;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .light .book-card .card-header {
-    background-color: #C2EDCE;
+    background-color: #F6F6F2;
     color: #0076BE;
     font-size: 22px;
-    border: 1px solid #C2EDCE;
+    border: 1px solid #F6F6F2;
 }
+.light .book-card .card-body
 
 .light .book-card .card-body strong {
-    color: #388087;
+    color: #4DB4D7;
 }
 
 .light .space-container {
-    background-color: #F6F6F2;
-    border: 1px solid #F6F6F2;
+    background-color: #f4f7fa;
+    border: 1px solid #f4f7fa;
 }
 .light .space-container .card-body{
-    background-color: #F6F6F2;
-    border: 1px solid #F6F6F2;
+    background-color: #f4f7fa;
+    border: 1px solid #f4f7fa;
 }
 
 /* Dark Mode Styles */

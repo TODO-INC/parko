@@ -1,17 +1,17 @@
 /* Light Mode Styles */
 .light .custom-common-container {
-    background-color: #F6F6F2;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: #f2f8f7;
+    border-bottom: 1px solid #f2f8f7;
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .light .navbar-nav .nav-link {
-    color: #388087;
+    color: #0e2521;
 }
 
 .light .navbar-nav .nav-link:hover {
-    color: #52ab98;
+    color: #0e2521;
 }
 
 .light .dropdown-menu {
@@ -44,8 +44,8 @@
 }
 
 .light .form-check-input[type="checkbox"]:checked {
-    background-color: #48BF91;
-    border-color: #48BF91;
+    background-color: #235c53;
+    border-color: #235c53;
 }
 
 .light .form-check-input[type="checkbox"]:not(:checked) {
@@ -55,8 +55,8 @@
 
 /* Dark Mode Styles */
 .dark .custom-common-container {
-    background-color: #333333;
-    border-bottom: 1px solid #444444;
+    background-color: #0e2521;
+    border-bottom: 1px solid #0e2521;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -102,8 +102,8 @@
 }
 
 .dark .form-check-input[type="checkbox"]:not(:checked) {
-    background-color: #444;
-    border-color: #444;
+    background-color: #0e2521;
+    border-color: #0e2521;
 }
 
 /* Light Mode Styles */
