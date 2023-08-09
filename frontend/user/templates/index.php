@@ -32,26 +32,34 @@ include "../libs/load.php";
     </head>
     <body data-bs-scheme="light">
       <?php load_temp("header.php"); ?> 
+      <div class="p-5 mt-2 rounded-3 jumbotron-container light">
+			<div class="container jumbotron mt-5 light">
+				<h2 class="display-6 fw-bold light">Hello ParkGuest</h2>
+				<p class="col-md-8 fs-5 light">Welcome to Parko, Start your journey by searching for parking spots in your desired city. Find convenient and secure parking options.</p>
+			</div>
+		</div>
       <div class="container search-space mt-4">
-      <div class="row">
-        <div class="col-8">
-          <form class="d-flex">
-          <label for="searchSpace" class="visually-hidden">Search</label>
-<input type="text" class="form-control me-1 search-box" id="searchSpace" placeholder="Search a city.." list="datalistOptions">
-<datalist id="datalistOptions">
-    <option value="Madurai">
-    <option value="Chennai">
-    <option value="Kovilpatti">
-</datalist>
-            <button type="submit" class="btn btn-primary bi bi-search search-button"></button>
-          </form>
-        </div>
-        <div class="col-4">
-          <form class="d-flex">
-            <button type="button" class="btn btn-primary bi bi-filter filter-button" data-bs-toggle="modal" data-bs-target="#filterModal"> Filters</button>
-          </form>
-        </div>
-      </div>
+  <div class="row justify-content-center"> 
+    <div class="col-10">
+      <form class="d-flex">
+        <label for="searchSpace" class="visually-hidden">Search</label>
+        <input type="text" class="form-control me-1 search-box" id="searchSpace" placeholder="Search a city.." list="datalistOptions">
+        <datalist id="datalistOptions">
+          <option value="Madurai">
+          <option value="Chennai">
+          <option value="Kovilpatti">
+        </datalist>
+        <button type="submit" class="btn btn-primary bi bi-search search-button"></button>
+      </form>
+    </div>
+    <div class="col-2">
+      <form class="d-flex">
+        <button type="button" class="btn btn-primary bi bi-filter filter-button" data-bs-toggle="modal" data-bs-target="#filterModal"> Filters</button>
+      </form>
+    </div>
+  </div>
+</div>
+
     </div>
     <div class="modal fade filter-modal" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -156,7 +164,7 @@ include "../libs/load.php";
         <div class="card-body">
           <div id="content1" class="content" style="display: none;">
             <div class="card mb-2 mt-1 book-card light custom-card">
-              <div class="card-header"> RAM Parking </div>
+              <div class="card-header"> RAM Parking (24/7)</div>
               <div class="card-body">
                 <p class="card-text">Private Commercial</p>
                 <p class="card-text">₹5 per hour</p>
@@ -187,7 +195,7 @@ include "../libs/load.php";
           </div>
           <div id="content2" class="content">
             <div class="container-map">
-              <div id="map" style="height:75vh"></div>
+              <div id="map" style="height:60vh"></div>
               <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
             </div>
           </div>
@@ -232,29 +240,26 @@ $(document).ready(function() {
 
 
       
- const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+                moonIcon.style.display = 'inline-block';
+                sunIcon.style.display = 'none';
+            }
+        }
+        function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -271,11 +276,27 @@ $(document).ready(function() {
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
+
 
 
 

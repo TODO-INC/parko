@@ -37,7 +37,7 @@ include "../libs/load.php";
 
 <body data-bs-scheme="light">
   <?php load_temp("header.php"); ?> 
-  <div class="container mt-3">
+  <div class="container mt-2">
     <div class="mb-4 rounded-3 jumbo-tron-container">
       <div class="container-fluid jumbo-tron">
         <div class="row align-items-center justify-content-between">
@@ -55,39 +55,33 @@ include "../libs/load.php";
             <i id="bookmark-icon" class="bi bi-bookmark"></i>
           </div>
         </div>
+
+
         <div class="container gallery-container mt-3 light">
+
         <div class="row gallery">
-          <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="col-sm-6 col-md-6 col-lg-6">
             <a href="../asset/sample/1.jpeg">
               <img class="img-fluid" src="../asset/sample/1.jpeg">
             </a>
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <a href="../asset/sample/2.jpeg">
-              <img class="img-fluid" src="../asset/sample/2.jpeg">
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="col-sm-6 col-md-6 col-lg-6">
             <a href="../asset/sample/3.jpeg">
               <img class="img-fluid" src="../asset/sample/3.jpeg">
             </a>
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="col-sm-6 col-md-6 col-lg-6">
             <a href="../asset/sample/4.jpeg">
               <img class="img-fluid" src="../asset/sample/4.jpeg">
             </a>
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <a href="../asset/sample/5.jpeg">
-              <img class="img-fluid" src="../asset/sample/5.jpeg">
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="col-sm-6 col-md-6 col-lg-6">
             <a href="../asset/sample/6.jpeg">
               <img class="img-fluid" src="../asset/sample/6.jpeg">
             </a>
           </div>
         </div>
+
         </div>
       </div>
     </div>
@@ -219,6 +213,14 @@ include "../libs/load.php";
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
+                        <input type="text" class="form-control" id="vehicleNumber"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactNumber" class="form-label">Contact Number:</label>
+                        <input type="text" class="form-control" id="contactNumber"  required>
+                    </div>
+                    <div class="mb-3">
                         <label for="startDate" class="form-label">Start Date:</label>
                         <input type="date" class="form-control" id="startDate" min="<?= date('Y-m-d') ?>" required>
                     </div>
@@ -260,29 +262,26 @@ include "../libs/load.php";
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
 
-                const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+                moonIcon.style.display = 'inline-block';
+                sunIcon.style.display = 'none';
+            }
+        }
+        function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -299,11 +298,27 @@ include "../libs/load.php";
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
+
             
 		</script>
 </body>

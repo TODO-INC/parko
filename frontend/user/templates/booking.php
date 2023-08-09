@@ -45,7 +45,6 @@
           <p class="card-text">Parking Time : 2.00PM - 5.30 PM</p>
           <p class="card-text">1.30 Hours Remaining]</p>
           <a href="#" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#extendModal">Extend Time</a>
-          <a href="#" class="btn btn-danger" type="button">HELP</a>
         </div>
       </div>
     </div>
@@ -62,7 +61,6 @@
           <p class="card-text">Parking Time : 2.00PM - 5.30 PM</p>
           <p class="card-text">3.30 Hours]</p>
           <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary">Directions</a>
-          <a href="#" class="btn btn-danger" type="button">HELP</a>
         </div>
       </div>
     </div>
@@ -79,7 +77,6 @@
           <p class="card-text">Parking Time : 2.00PM - 5.30 PM </p>
           <p class="card-text">3.30 Hours]</p>
           <a href="#" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#reviewModal">Review</a>
-          <a href="#" class="btn btn-danger" type="button">HELP</a>
         </div>
       </div>
     </div>
@@ -150,29 +147,26 @@
 
 		<script>
 
-                const darkModeSwitch = document.getElementById('dark-mode-switch');
-                const body = document.body;
-                const moonIcon = document.getElementById('moon-icon');
-                const sunIcon = document.getElementById('sun-icon');
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
 
-                // Function to toggle dark mode styles
-                function toggleDarkMode() {
-                    if (darkModeSwitch.checked) {
-                        body.setAttribute('data-bs-scheme', 'dark');
-                        toggleElementsLightToDark();
-                        moonIcon.style.display = 'none';
-                        sunIcon.style.display = 'inline-block';
-                    } else {
-                        body.setAttribute('data-bs-scheme', 'light');
-                        // Function to toggle elements from light to dark
-        toggleElementsDarkToLight();
-                        moonIcon.style.display = 'inline-block';
-                        sunIcon.style.display = 'none';
-                    }
-                }
-
-                // Toggle elements from dark to light
-                function toggleElementsDarkToLight() {
+        // Function to toggle dark mode styles
+        function toggleDarkMode() {
+            if (darkModeSwitch.checked) {
+                body.setAttribute('data-bs-scheme', 'dark');
+                toggleElementsLightToDark();
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'inline-block';
+            } else {
+                body.setAttribute('data-bs-scheme', 'light');
+                toggleElementsDarkToLight();
+                moonIcon.style.display = 'inline-block';
+                sunIcon.style.display = 'none';
+            }
+        }
+        function toggleElementsDarkToLight() {
                     const elements = document.querySelectorAll('.dark');
                     elements.forEach(element => {
                         element.classList.remove('dark');
@@ -189,11 +183,27 @@
                     });
                 }
 
-                // Call the function on page load
-                toggleDarkMode();
+        // Function to load dark mode preference from local storage
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference === 'true') {
+                darkModeSwitch.checked = true;
+            } else {
+                darkModeSwitch.checked = false;
+            }
+            toggleDarkMode();
+        }
 
-                // Listen for dark mode switch changes
-                darkModeSwitch.addEventListener('change', toggleDarkMode);
+        // Listen for dark mode switch changes
+        darkModeSwitch.addEventListener('change', () => {
+            toggleDarkMode();
+            // Store the dark mode preference in local storage
+            localStorage.setItem('darkMode', darkModeSwitch.checked ? 'true' : 'false');
+        });
+
+        // Call the function to load dark mode preference on page load
+        loadDarkModePreference();
+
             
 		</script>
 	</body>

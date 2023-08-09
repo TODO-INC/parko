@@ -27,6 +27,8 @@
 						</label>
 					</div>
 				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
 				<li class="nav-item dropdown light">
 					<a class="nav-link dropdown-toggle light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<span class="bi bi-person light"></span>
