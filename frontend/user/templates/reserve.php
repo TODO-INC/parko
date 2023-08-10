@@ -42,7 +42,7 @@ include "../libs/load.php";
       <div class="container-fluid jumbo-tron">
         <div class="row align-items-center justify-content-between">
           <div class="col-md-8">
-            <h1 class="fw-bold">RAM Parkings</h1>
+            <h1 class="fw-bold">RAM Parkings (24/7)</h1>
             <div class="rating-info d-flex align-items-center">
               <div id="rating-container" class="align-items-center">
                 <span id="star-container"></span>

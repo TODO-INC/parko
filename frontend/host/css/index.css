@@ -145,3 +145,33 @@ body {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     color: #f2f8f7
 }
+
+
+.test{
+    --text: #0e2521;
+    --background: #f2f8f7;
+    --primary: #235c53;
+    --secondary: #bce6df;
+    --accent: #3b9b8b;
+    
+    
+    --text: #f2f8f7;
+    --background: #0e2521;
+    --primary: #235c53;
+    --secondary: #030707;
+    --accent: #98d8cd;
+    
+    
+    --text: #1a090e;
+    --background: #ffffff;
+    --primary: #1e5749;
+    --secondary: #c2e1e9;
+    --accent: #39a755;
+    
+    
+    --text: #ffffff;
+    --background: #1a090e;
+    --primary: #1e5749;
+    --secondary: #050c0e;
+    --accent: #9cddac;
+    }

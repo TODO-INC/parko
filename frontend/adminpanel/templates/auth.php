@@ -104,16 +104,15 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="/frontend/adminpanel/css/auth.css" rel="stylesheet">
+    <link href="../css/auth.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
 </head>
 <body>
-    <main class="container">
+    <!-- <main class="container">
         <div class="card text-center custom-card">
             <div class="card-header custom-card-header">Welcome</div>
             <div class="card-body custom-card-body">
-                <!-- Login Form -->
                 <p>
                     <button class="btn btn-primary collapsed btn-base-auth" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                         Already have an account
@@ -132,11 +131,10 @@
                         <button class="btn btn-bd-primary btn-auth w-100 py-2" type="submit" onclick="check_user('Add')">Login</button>
                     </form>
                 </div>
-              <!--  {% if message %}
+               {% if message %}
                 <p style="color: red;">{{ message }}</p>
-                {% endif %} -->
+                {% endif %} 
 
-                <!-- Signup Form -->
                 <p>
                     <button class="btn btn-primary btn-base-auth" id="signup-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSignup" aria-expanded="false" aria-controls="collapseSignup">
                         Didn't have an account? Sign Up
@@ -169,9 +167,62 @@
                 </div>
             </div>
         </div>
+    </main> -->
+    <main>
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signup Form</div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">Signup</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form  name="login" id="login-form" class="login" action="/post_login" method="post">
+            <div class="field">
+              <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div>
+          </form>
+          <form action="#" class="signup">
+          <div class="field">
+              <input type="text" placeholder="User Name" required>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+              <input type="number" placeholder="Phone number" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Confirm password" required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Signup">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     </main>
 
-    <footer class="navbar navbar-expand-md custom-common-footer">
+    <!-- <footer class="navbar navbar-expand-md custom-common-footer">
         <div class="container custom-footer">
             <div class="navbar-brand">
                 <a class="nav-link" style="font-size:15px">© 2023 TODO-INC</a>
@@ -188,14 +239,34 @@
                 </li>
             </ul>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custom JS -->
-    <script src="/frontend/adminpanel/js/auth.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+ const loginText = document.querySelector(".title-text .login");
+      const loginForm = document.querySelector("form.login");
+      const loginBtn = document.querySelector("label.login");
+      const signupBtn = document.querySelector("label.signup");
+      const signupLink = document.querySelector("form .signup-link a");
+      signupBtn.onclick = (()=>{
+        loginForm.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
+      });
+      loginBtn.onclick = (()=>{
+        loginForm.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
+      });
+      signupLink.onclick = (()=>{
+        signupBtn.click();
+        return false;
+      });
+
+    </script>
 </body>
 </html>
 
