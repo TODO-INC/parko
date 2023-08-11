@@ -1,0 +1,33 @@
+body{
+    font-family: 'Albert Sans';
+}
+
+[data-bs-scheme="light"] {
+    background-color: #ffffff;
+}
+
+[data-bs-scheme="dark"] {
+    background-color: #272727;
+    color: #ffffff;
+}
+
+.container-yet{
+    width: 80%;
+    height: 80%;
+    margin: 50px auto;
+    margin-bottom: 20%;
+    background-color: #f1f1f1;
+    color: #52ab98;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
