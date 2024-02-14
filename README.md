@@ -1,0 +1,3 @@
+# Parko: An Online Parking Website
+
+Park is an innovative online platform revolutionizing the way people find and book parking spaces. It operates akin to Airbnb but focuses solely on parking needs. With Park, users can effortlessly search for available parking spots in their desired location, book them for their specified duration, and securely pay for their reservation. Parking space owners can list their spaces on the platform, set pricing, and manage bookings efficiently. Park prioritizes user experience, offering a responsive interface accessible across devices, ensuring stress-free parking experiences for both users and space owners.

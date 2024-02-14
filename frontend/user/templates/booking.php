@@ -42,9 +42,9 @@
           <p class="card-text">Booking ID : #176-590</p>
           <p class="card-text">Vehicle Type : Motor Two Wheeler</p>
           <p class="card-text">Booked Date : 04/08/2023</p>
-          <p class="card-text">Parking Time : 2.00PM - 5.30 PM</p>
-          <p class="card-text">1.30 Hours Remaining]</p>
-          <a href="#" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#extendModal">Extend Time</a>
+          <p class="card-text">Parked Time : 2.00PM</p>
+          <p class="card-text">Total Time : 13 Hours</p>
+          <a href="#" class="btn btn-primary" disabled>Pay Rs.75</a>
         </div>
       </div>
     </div>
@@ -58,8 +58,7 @@
           <p class="card-text">Booking ID : #176-590</p>
           <p class="card-text">Vehicle Type : Motor Two Wheeler</p>
           <p class="card-text">Booked Date : 04/08/2023</p>
-          <p class="card-text">Parking Time : 2.00PM - 5.30 PM</p>
-          <p class="card-text">3.30 Hours]</p>
+          <p class="card-text">Parking Time : 5.30 PM</p>
           <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary">Directions</a>
         </div>
       </div>
@@ -75,7 +74,7 @@
           <p class="card-text">Vehicle Type : Motor Two Wheeler</p>
           <p class="card-text">Booked Date : 04/08/2023</p>
           <p class="card-text">Parking Time : 2.00PM - 5.30 PM </p>
-          <p class="card-text">3.30 Hours]</p>
+          <p class="card-text">[3.30 Hours]</p>
           <a href="#" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#reviewModal">Review</a>
         </div>
       </div>
@@ -83,28 +82,6 @@
   </div>
     </div>
 
-<div class="modal fade" id="extendModal" tabindex="-1" aria-labelledby="extendModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content book-modal ">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="extendModalLabel">Extend</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-            <form class="mb-3">
-                <label for="userInput" class="form-label">Enter Time to be Extend (minimum 1 hour):</label>
-                <input type="number" class="form-control" id="userInput" min="1" onchange="calculateValue()">
-                <label for="calculatedValue" class="form-label">Price :</label>
-                <input type="text" class="form-control" id="calculatedValue" readonly>
-                <button type="submit" class="btn btn-info mt-3">Pay & Proceed</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-          </div>
-          </div>
-        </div>
-    </div>
 
 
 <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -124,7 +101,7 @@
               </div>
               <input type="hidden" name="reviewRating" id="reviewRating" value="0">
               <textarea class="form-control mt-2" rows="4" placeholder="Write your review here"></textarea>
-              <button type="button" class="btn btn-primary mt-2" onclick="submitReview()">Submit Review</button>
+              <button type="button" class="btn btn-primary mt-2" onclick="submitReview()" data-bs-dismiss="modal">Submit Review</button>
             </div>
             <div class="modal-footer">
             </div>

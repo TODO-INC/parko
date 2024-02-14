@@ -97,15 +97,15 @@
 			</div>
 
 				<hr />
-			<div class="container">
+				<div class="container">
 				<h3 style="text-align:center;" class="mt-3 mb-3">Reviews</h3>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Easy to park</p>
+									<h4 class="bg-1 mt-1">Yoga</h4>
+									<p class="bg-2">Easy to parking and park out</p>
 								</div>
 							</div>
 						</div>
@@ -114,8 +114,8 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Safe parking</p>
+									<h4 class="bg-1 mt-1">Ananth</h4>
+									<p class="bg-2">Safe parking area with well equipped security cameras</p>
 								</div>
 							</div>
 						</div>
@@ -126,8 +126,8 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Easy to park</p>
+									<h4 class="bg-1 mt-1">Saran</h4>
+									<p class="bg-2">Location is easily findable. Present in main part of the city</p>
 								</div>
 							</div>
 						</div>
@@ -136,14 +136,15 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Safe parking</p>
+									<h4 class="bg-1 mt-1">Joshuva</h4>
+									<p class="bg-2">Good place to park, but please improve cleanliness of the space. </p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+      </div>
 		</main>
 
 		<?php load_temp("footer.php"); ?>

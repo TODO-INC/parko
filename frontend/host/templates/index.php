@@ -38,6 +38,34 @@
 				<a class="btn btn-primary btn-lg light" href="listing.php">Manage</a>
 			</div>
 		</div>
+		<div class="container mt-5 prof-monetize light">
+				<div class="card selector-date light mb-4 mt-3">
+					<div class="card-header">Physical entry</div>
+					<div class="card-body">
+					<form id="vehicleCountForm">
+        <div class="mb-3">
+            <label for="carCount" class="form-label">Number of Cars:</label>
+            <input type="number" class="form-control" id="carCount" value="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="heavyVehicleCount" class="form-label">Number of Heavy Vehicles:</label>
+            <input type="number" class="form-control" id="heavyVehicleCount" value="2" required>
+        </div>
+        <div class="mb-3">
+            <label for="motorTwoWheelerCount" class="form-label">Number of Motor Two Wheelers:</label>
+            <input type="number" class="form-control" id="motorTwoWheelerCount" value="10" required>
+        </div>
+        <div class="mb-3">
+            <label for="nonMotorTwoWheelerCount" class="form-label">Number of Non-Motor Two Wheelers:</label>
+            <input type="number" class="form-control" id="nonMotorTwoWheelerCount" value="8" required>
+        </div>
+        <div class="modal-footer" style="display: flex;justify-content: center;">
+            <button type="submit" class="btn btn-info">Add</button>
+        </div>
+    </form>
+					</div>
+				</div>
+		</div>
 		<div class="container mt-2 custom-manage-card light">
 			<div class="card custom-manage-card light">
 				<div class="card-header light">
@@ -69,7 +97,7 @@
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
 											<h7 class="card-text">Contact</h7><br />
-											<a type="button" class="btn btn-info">Parked In</a>
+											<a type="button" class="btn btn-info">Parked out</a>
 										</div>
 									</div>
 								</div>
@@ -81,7 +109,7 @@
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
 											<h7 class="card-text">Contact</h7><br />
-											<a type="button" class="btn btn-info">Parked In</a>
+											<a type="button" class="btn btn-info">Parked out</a>
 										</div>
 									</div>
 								</div>
@@ -99,6 +127,7 @@
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
 											<h7 class="card-text">Contact</h7><br />
+											<a class="btn btn-danger">Cancel</a>
 										</div>
 									</div>
 								</div>
@@ -110,6 +139,7 @@
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
 											<h7 class="card-text">Contact</h7><br />
+											<a class="btn btn-danger">Cancel</a>
 										</div>
 									</div>
 								</div>
@@ -121,6 +151,7 @@
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
 											<h7 class="card-text">Contact</h7><br />
+											<a class="btn btn-danger">Cancel</a>
 										</div>
 									</div>
 								</div>
@@ -133,7 +164,7 @@
 								<div class="col">
 									<div class="card text-center mb-3 booked-card light">
 										<div class="card-body">
-											<h5 class="card-title">Vehicle number</h5>
+											<h5 class="card-title">Vehicle number</h5><span class="badge text-bg-primary">Completed</span>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
@@ -144,7 +175,7 @@
 								<div class="col">
 									<div class="card text-center mb-3 booked-card light">
 										<div class="card-body light">
-											<h5 class="card-title">Vehicle number</h5>
+											<h5 class="card-title">Vehicle number</h5><span class="badge text-bg-primary">Completed</span>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
@@ -155,7 +186,7 @@
 								<div class="col">
 									<div class="card text-center mb-3 booked-card light">
 										<div class="card-body light">
-											<h5 class="card-title">Vehicle number</h5>
+											<h5 class="card-title">Vehicle number</h5><span class="badge text-bg-primary">Missed</span>
 											<hr />
 											<h7 class="card-text">Vehicle type</h7><br />
 											<h7 class="card-text">Time</h7><br />
@@ -246,6 +277,20 @@
 
         // Call the function to load dark mode preference on page load
         loadDarkModePreference();
+		document.getElementById("vehicleCountForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var carCount = document.getElementById("carCount").value;
+            var heavyVehicleCount = document.getElementById("heavyVehicleCount").value;
+            var motorTwoWheelerCount = document.getElementById("motorTwoWheelerCount").value;
+            var nonMotorTwoWheelerCount = document.getElementById("nonMotorTwoWheelerCount").value;
+            
+            // Do something with the values, e.g., display them
+            console.log("Car Count:", carCount);
+            console.log("Heavy Vehicle Count:", heavyVehicleCount);
+            console.log("Motor Two Wheeler Count:", motorTwoWheelerCount);
+            console.log("Non-Motor Two Wheeler Count:", nonMotorTwoWheelerCount);
+        });
             
 		</script>
 	</body>

@@ -123,3 +123,9 @@ jumbotron {
   background-color: #F6F6F2;
   color: #272727;
 }
+
+.added-detail{
+  border-radius: 16px;
+  border-style:solid;
+  border-color: #0076BE;
+}

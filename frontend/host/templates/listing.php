@@ -49,7 +49,80 @@
 								<!-- Details Summary Card -->
 								<div class="card mb-2 mt-1 book-card light">
 									<div class="card-header light">
-										Yoga Parking
+										Yoga Parking <span class="badge text-bg-success">Verified</span>
+									</div>
+									<div class="card-body light">
+										<!-- Place the grid layout here -->
+										<div class="container mt-md-4 light">
+											<div class="row">
+												<div class="col-md-4">
+													<strong>Types of User:</strong>
+													<span id="displayUserType">Regular User</span>
+												</div>
+												<div class="col-md-4">
+													<strong>Name of Space:</strong>
+													<span id="displayName">Parko Plaza</span>
+												</div>
+												<div class="col-md-4">
+													<strong>Space Size:</strong>
+													<span id="displaySize">150 Sq meter</span> 
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-4">
+													<strong>Address:</strong>
+													<span id="displayAddress">123 Main Street</span>
+												</div>
+												<div class="col-md-4">
+													<strong>Pin Code:</strong>
+													<span id="displayPincode">12345</span>
+												</div>
+												<div class="col-md-4">
+													<strong>City:</strong>
+													<span id="displayCity">Madurao</span>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<strong>Location Coordinates:</strong>
+													<span id="displayCoordinates">Latitude: 40.7128, Longitude: -74.0060</span>
+												</div>
+											</div>
+
+											<div class="row mt-3">
+												<div class="col-md-4">
+													<strong>Space Length:</strong>
+													<span id="displayLength">10 meters</span> 
+												</div>
+												<div class="col-md-4">
+													<strong>Space Width:</strong>
+													<span id="displayWidth">15</span> 
+												</div>
+												<div class="col-md-4">
+													<strong>Survey Number:</strong>
+													<span id="displaySurvey">S12345</span>
+												</div>
+											</div>
+
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<strong>Amenities Provided:</strong>
+													<span id="displayAmenities">24/7 Security, Lighting</span>
+												</div>
+											</div>
+
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<strong>Types of Parkings:</strong>
+													<span id="displayParkings">Compact, Motorcycle, Electric</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card mb-2 mt-1 book-card light">
+									<div class="card-header light">
+										Ram Parking <span class="badge text-bg-warning">Not Verified</span>
 									</div>
 									<div class="card-body light">
 										<!-- Place the grid layout here -->

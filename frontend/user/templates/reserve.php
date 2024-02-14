@@ -97,7 +97,7 @@ include "../libs/load.php";
   <h2 class="mb-1">Host - RAM</h2>
   <hr>
   <a><span class="badge bg-primary">Private Residential</span> <span class="badge bg-info">Subscription</span> <span class="badge bg-success">Current</span></a>
-  <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem consequatur culpa nesciunt tempore expedita quibusdam maiores, unde quidem.</p>
+  <p class="lead">Your vehicle's safety is our top priority. Our parking area is well-lit and equipped with security cameras that monitor the premises around the clock, ensuring that your vehicle is in good hands.</p>
   <hr>
 
   
@@ -150,8 +150,8 @@ include "../libs/load.php";
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Easy to park</p>
+									<h4 class="bg-1 mt-1">Yoga</h4>
+									<p class="bg-2">Easy to parking and park out</p>
 								</div>
 							</div>
 						</div>
@@ -160,8 +160,8 @@ include "../libs/load.php";
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Safe parking</p>
+									<h4 class="bg-1 mt-1">Ananth</h4>
+									<p class="bg-2">Safe parking area with well equipped security cameras</p>
 								</div>
 							</div>
 						</div>
@@ -172,8 +172,8 @@ include "../libs/load.php";
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Easy to park</p>
+									<h4 class="bg-1 mt-1">Saran</h4>
+									<p class="bg-2">Location is easily findable. Present in main part of the city</p>
 								</div>
 							</div>
 						</div>
@@ -182,8 +182,8 @@ include "../libs/load.php";
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ram</h4>
-									<p class="bg-2">Safe parking</p>
+									<h4 class="bg-1 mt-1">Joshuva</h4>
+									<p class="bg-2">Good place to park, but please improve cleanliness of the space. </p>
 								</div>
 							</div>
 						</div>
@@ -193,7 +193,7 @@ include "../libs/load.php";
       </div>
 <div class="container checkout mb-3 mt-3">
 <div class="fixed">
-    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal">Reserve</button>
   </div>
 </div>
 
@@ -208,51 +208,69 @@ include "../libs/load.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
-                        <select class="form-select" id="vehicleType" required>
-                            <option value="heavy">Heavy Four Wheeler</option>
-                            <option value="normal">Four Wheeler</option>
-                            <option value="two-wheeler">Motor Two Wheeler</option>
-                            <option value="bicycle">Bicycle</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
-                        <input type="text" class="form-control" id="vehicleNumber"  required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactNumber" class="form-label">Contact Number:</label>
-                        <input type="text" class="form-control" id="contactNumber"  required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="startDate" class="form-label">Start Date:</label>
-                        <input type="date" class="form-control" id="startDate" min="<?= date('Y-m-d') ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="startTime" class="form-label">Start Time:</label>
-                        <input type="time" class="form-control" id="startTime" min="<?= date('H:i', strtotime('+1 hour')) ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endDate" class="form-label">End Date:</label>
-                        <input type="date" class="form-control" id="endDate" min="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endTime" class="form-label">End Time:</label>
-                        <input type="time" class="form-control" id="endTime" min="<?= date('H:i', strtotime('+2 hours')) ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cost" class="form-label">Cost:</label>
-                        <input type="text" class="form-control" id="cost" readonly>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="calculateCost()">Calculate Cost</button>
-                
+            <form>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioExisting" checked>
+            <label class="form-check-label" for="radioExisting">
+                <div class="container added-detail">
+                        <h4>Honda Creta</h4>
+                        <p>TN 69 S 4321</p>
+                        <p>Four Wheeler</p>
+                        <p>Owner : Jeffry J</p>
+                        <p>Contact : 9829543210</p>
+                      </div>
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioNew">
+            <label class="form-check-label" for="radioNew">
+                <div class="container added-detail">
+                        <h4>Honda Activa</h4>
+                        <p>TN 96 T 1234</p>
+                        <p>Motor Two Wheeler</p>
+                        <p>Owner : Narayanan M</p>
+                        <p>Contact : 9876543210</p>
+                      </div>
+            </label>
+        </div>
+        <button class="btn btn-warning" id="addNewButton" type="button" onclick="toggleNewVehicleDetails()">Add New</button>
+
+        <div id="newVehicleDetails" style="display: none;">
+            <div class="mb-3">
+                <label for="vehicleName" class="form-label">Vehicle Name:</label>
+                <input type="text" class="form-control" required>
             </div>
-            <div class="modal-footer" style="display: flex;justify-content: center;">
-  <button type="submit" class="btn btn-info">Proceed</button>
-</div>>
-            </form>
+            <div class="mb-3">
+                <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ownerName" class="form-label">Owner Name:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
+                <select class="form-select" id="vehicleType" required>
+                    <option value="heavy">Heavy Four Wheeler</option>
+                    <option value="normal">Four Wheeler</option>
+                    <option value="two-wheeler">Motor Two Wheeler</option>
+                    <option value="bicycle">Bicycle</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+                        <label for="startDate" class="form-label">Date of reservation:</label>
+                        <input type="date" class="form-control" id="startDate" min="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startTime" class="form-label">Time of reservation:e:</label>
+                        <input type="time" class="form-control" id="startTime" min="" required>
+                    </div>
+
+        <div class="modal-footer" style="display: flex;justify-content: center;">
+            <button type="submit" class="btn btn-info">Pay and Proceed</button>
+        </div>
+    </form>
         </div>
     </div>
 </div>
@@ -267,7 +285,6 @@ include "../libs/load.php";
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src = "../js/maploc.js"></script>
-  <div id="map" style="width: 600px; height: 400px; top:10px;"></div>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
@@ -330,9 +347,57 @@ const darkModeSwitch = document.getElementById('dark-mode-switch');
         // Call the function to load dark mode preference on page load
         loadDarkModePreference();
 
+        function toggleNewVehicleDetails() {
+    var newVehicleDetails = document.getElementById("newVehicleDetails");
+    
+    if (newVehicleDetails.style.display === "block") {
+        newVehicleDetails.style.display = "none";
+    } else {
+        newVehicleDetails.style.display = "block";
+    }
+}
+
+
             
 		</script>
 </body>
 
 
 
+<!-- <div class="mb-3">
+                        <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
+                        <select class="form-select" id="vehicleType" required>
+                            <option value="heavy">Heavy Four Wheeler</option>
+                            <option value="normal">Four Wheeler</option>
+                            <option value="two-wheeler">Motor Two Wheeler</option>
+                            <option value="bicycle">Bicycle</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
+                        <input type="text" class="form-control" id="vehicleNumber"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactNumber" class="form-label">Contact Number:</label>
+                        <input type="text" class="form-control" id="contactNumber"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date:</label>
+                        <input type="date" class="form-control" id="startDate" min="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startTime" class="form-label">Start Time:</label>
+                        <input type="time" class="form-control" id="startTime" min="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date:</label>
+                        <input type="date" class="form-control" id="endDate" min="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endTime" class="form-label">End Time:</label>
+                        <input type="time" class="form-control" id="endTime" min="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Cost:</label>
+                        <input type="text" class="form-control" id="cost" readonly>
+                    </div> -->

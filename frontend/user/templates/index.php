@@ -46,7 +46,7 @@ include "../libs/load.php";
 		</div>
       <div class="container search-space mt-4">
   <div class="row justify-content-center"> 
-    <div class="col-10">
+    <div class="col-8">
       <form class="d-flex">
         <label for="searchSpace" class="visually-hidden">Search</label>
         <input type="text" class="form-control me-1 search-box" id="searchSpace" placeholder="Search a city.." list="datalistOptions">
@@ -66,9 +66,14 @@ include "../libs/load.php";
         <button type="submit" class="btn btn-primary bi bi-search search-button"></button>
       </form>
     </div>
-    <div class="col-2">
+    <div class="col-auto">
       <form class="d-flex">
         <button type="button" class="btn btn-primary bi bi-filter filter-button" data-bs-toggle="modal" data-bs-target="#filterModal"> Filters</button>
+      </form>
+    </div>
+    <div class="col-auto">
+      <form class="d-flex">
+        <button type="button" class="btn btn-primary filter-button" data-target="content3">Search Near By</button>
       </form>
     </div>
   </div>
@@ -76,7 +81,7 @@ include "../libs/load.php";
 
     </div>
     <div class="modal fade filter-modal" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="filterModalLabel">Filters</h1>
@@ -103,11 +108,6 @@ include "../libs/load.php";
                     <option value="motorWheeler">Motor Two Wheeler</option>
                     <option value="bicycle">Bicycle</option>
                   </select>
-                </div>
-                <hr>
-                <div class="mb-3">
-                  <label for="maxPrice" class="form-label">Max Price:</label>
-                  <input type="number" class="form-control" id="maxPrice" name="maxPrice" min="2" max="100" step="2" value="100" placeholder="Enter maximum price">
                 </div>
                 <hr>
                 <div class="container mt-4">
@@ -161,6 +161,70 @@ include "../libs/load.php";
                     </div>
                   </div>
                   <hr>
+                  <div class="container mt-4">
+                  <div class="mb-2 custom-dropdown">
+                    <label for="multipleOptions">Timing :</label>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAmenities" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time Options </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option1" value="option1">
+                          <label class="form-check-label" for="option1">Office [9.00AM - 5.00PM]</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option2" value="option2">
+                          <label class="form-check-label" for="option2">Home [5.00AM - 10.00PM</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option3" value="option3">
+                          <label class="form-check-label" for="option3">AllTime [24/7]</label>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <hr />
+                <div class="mb-2 container">
+                <label  >Insurance:</label>
+                <div class="form-check ">
+                  <input class="form-check-input" type="checkbox" value="" id="check">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Insurance Provided
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Insurance not provided
+                  </label>
+                </div>
+                </div>
+                <hr />
+                
+                <hr>
+                  <div class="container mt-4 mb-2">
+                  <div class="mb-2 custom-dropdown">
+                    <label for="multipleOptions"> Star Ratings :</label>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAmenities" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select Rating </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option1" value="option1">
+                          <label class="form-check-label" for="option1">4 - 5</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option2" value="option2">
+                          <label class="form-check-label" for="option2">2 - 4</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="option3" value="option3">
+                          <label class="form-check-label" for="option3">0 - 2</label>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
                   <button style="text-align:center;" type="submit" class="btn btn-primary filter-submit" data-bs-dismiss="modal">Apply</button>
                 </div>
             </form>
@@ -181,9 +245,8 @@ include "../libs/load.php";
               <div class="card-header"> RAM Parking (24/7)</div>
               <div class="card-body">
                 <p class="card-text">Private Commercial</p>
-                <p class="card-text">₹5 per hour</p>
                 <div id="rating-container" class="align-items-center">
-                  <span id="star-container"></span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
                   <span id="rating-count">(1307)</span>
                 </div>
                 
@@ -193,13 +256,12 @@ include "../libs/load.php";
             </div>
 
             <div class="card mb-2 mt-1 book-card light custom-card">
-              <div class="card-header"> Yoga Parking </div>
+              <div class="card-header"> Yoga Parking(9.00-5.00) </div>
               <div class="card-body">
                 <p class="card-text">Private Residential</p>
-                <p class="card-text">₹69 per hour</p>
                 <div id="rating-container" class="align-items-center">
-                  <span id="star-container"></span>
-                  <span id="rating-count">(10907)</span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                  <span id="rating-count">(1875)</span>
                 </div>
                 <a href="reserve.php" class="btn btn-info card-button">More</a>
                 <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary card-button">Directions</a>
@@ -208,6 +270,12 @@ include "../libs/load.php";
             
           </div>
           <div id="content2" class="content">
+            <div class="container-map">
+              <div id="map" style="height:60vh"></div>
+              <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+            </div>
+          </div>
+          <div id="content3" class="content">
             <div class="container-map">
               <div id="map" style="height:60vh"></div>
               <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
