@@ -37,7 +37,9 @@ include "../libs/load.php";
       <script src="https://unpkg.com/@turf/turf@6.5.0"></script>
     </head>
     <body data-bs-scheme="light">
+      
       <?php load_temp("header.php"); ?> 
+
       <div class="p-5 mt-2 rounded-3 jumbotron-container light">
 			<div class="container jumbotron mt-5 light">
 				<h2 class="display-6 fw-bold light">Hello ParkGuest</h2>
