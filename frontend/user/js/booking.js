@@ -29,7 +29,9 @@ function submitReview() {
 
 
 function calculateValue() {
+    alert("123");
     const userInput = document.getElementById('userInput').value;
     const calculatedValue = userInput * 5; // Change this multiplier as needed
-    document.getElementById('calculatedValue').value = "₹ "+calculatedValue;
+    document.getElementById('calculatedValue').value = calculatedValue;
   }
+

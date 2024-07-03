@@ -23,16 +23,16 @@
 		<link href="https://fonts.googleapis.com/css?family=Albert+Sans" rel="stylesheet" />
 
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="../css/header.css" />
-		<link rel="stylesheet" href="../css/footer.css" />
-		<link rel="stylesheet" href="../css/profile.css" />
+		<link rel="stylesheet" href="/frontend/host/css/header.css" />
+		<link rel="stylesheet" href="/frontend/host/css/footer.css" />
+		<link rel="stylesheet" href="/frontend/host/css/profile.css" />
 	</head>
 
 	<body data-bs-scheme="light">
-		<?php load_temp("header.php"); ?>
+  {% include "header.php" %}
 		<main>
 			<div class="container jumbo-tron light">
-				<img height="100px" src="../asset/pics/profile.png" />
+				<img height="100px" src="/frontend/host/asset/pics/profile.png" />
 				<h1 class="display-6 fw-bold light">Hello Host</h1>
 				<div id="rating-container" class="align-items-center light">
 					<span id="star-container"></span>
@@ -97,15 +97,15 @@
 			</div>
 
 				<hr />
-				<div class="container">
+			<div class="container">
 				<h3 style="text-align:center;" class="mt-3 mb-3">Reviews</h3>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Yoga</h4>
-									<p class="bg-2">Easy to parking and park out</p>
+									<h4 class="bg-1 mt-1">Ram</h4>
+									<p class="bg-2">Easy to park</p>
 								</div>
 							</div>
 						</div>
@@ -114,8 +114,8 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Ananth</h4>
-									<p class="bg-2">Safe parking area with well equipped security cameras</p>
+									<h4 class="bg-1 mt-1">Ram</h4>
+									<p class="bg-2">Safe parking</p>
 								</div>
 							</div>
 						</div>
@@ -126,8 +126,8 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Saran</h4>
-									<p class="bg-2">Location is easily findable. Present in main part of the city</p>
+									<h4 class="bg-1 mt-1">Ram</h4>
+									<p class="bg-2">Easy to park</p>
 								</div>
 							</div>
 						</div>
@@ -136,25 +136,23 @@
 						<div class="card mb-2 comment-container light">
 							<div class="card-body">
 								<div class="container">
-									<h4 class="bg-1 mt-1">Joshuva</h4>
-									<p class="bg-2">Good place to park, but please improve cleanliness of the space. </p>
+									<h4 class="bg-1 mt-1">Ram</h4>
+									<p class="bg-2">Safe parking</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-      </div>
 		</main>
 
-		<?php load_temp("footer.php"); ?>
-
+		{% include "footer.php" %}
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Include Popper.js for Bootstrap -->
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 		<!-- Include Bootstrap JS -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-		<script src="../js/profile.js"></script>
+		<script src="/frontend/host/js/profile.js"></script>
 		<script>
 
 const darkModeSwitch = document.getElementById('dark-mode-switch');

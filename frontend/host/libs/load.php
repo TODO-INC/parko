@@ -2,5 +2,5 @@
 
 function load_temp($name)
 {
-    include "../templates/$name";
+    include $_SERVER['DOCUMENT_ROOT']."/parko/frontend/host/templates/$name";
 }

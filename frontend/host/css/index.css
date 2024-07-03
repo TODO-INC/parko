@@ -145,27 +145,3 @@ body {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     color: #f2f8f7
 }
-.prof-monetize{
-    border: none;
-    width:70%;
-    margin:15%;
-}
-
-.prof-monetize.single-card{
-    border: none;
-}
-
-.selector-date.light{
-    border-radius: 16px;
-    background-color: #95D8EB;
-    border-color: #95D8EB;
-    text-align: center;
-}
-
-.selector-date.dark{
-    border-radius: 16px;
-    background-color: #0076BE;
-    border-color: #0076BE;
-    color:#ffffff;
-    text-align: center;
-}

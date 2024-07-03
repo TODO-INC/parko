@@ -4,12 +4,12 @@ include "../libs/load.php";
   <!DOCTYPE html>
   <html lang="en" data-bs-theme="auto">
     <head>
-      <script src="../vendor/assets/js/color-modes.js"></script>
+      <script src="/frontend/user/vendor/assets/js/color-modes.js"></script>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="generator" content="Hugo 0.112.5">
-		<link rel="shortcut icon" type="image/x-icon" href="../asset/icons/icon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="/frontend/user/asset/icons/icon.ico" />
 		<title>Parko</title>
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" />
@@ -26,9 +26,9 @@ include "../libs/load.php";
       <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
       </script>
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-      <link rel="stylesheet" href="../css/header.css">
-      <link rel="stylesheet" href="../css/footer.css">
-      <link rel="stylesheet" href="../css/index.css">
+      <link rel="stylesheet" href="/frontend/user/css/header.css">
+      <link rel="stylesheet" href="/frontend/user/css/footer.css">
+      <link rel="stylesheet" href="/frontend/user/css/index.css">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -37,19 +37,76 @@ include "../libs/load.php";
       <script src="https://unpkg.com/@turf/turf@6.5.0"></script>
     </head>
     <body data-bs-scheme="light">
-      <?php load_temp("header.php"); ?> 
+    <header class="navbar navbar-expand-md custom-common-container light">
+	<div class="container-md custom-common-header light">
+		<a class="navbar-brand light" href="#">
+			<img class="icon light" height="40px" src="/frontend/user/asset/pics/parko.png" alt="Parko Logo" />
+		</a>
+
+		<button class="navbar-toggler light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon light"></span>
+		</button>
+
+		<div class="collapse navbar-collapse light" id="navbarNav">
+		<ul class="navbar-nav mx-auto light">
+      <li class="nav-item light mx-2">
+          <a class="nav-link light" href="#" onclick="check_home('Add',{{user_id}})" >Home</a>
+      </li>
+      <li class="nav-item light mx-2">
+          <a class="nav-link light" href="#" onclick="check_booking('Add',{{user_id}})" >Booking</a>
+      </li>
+    </ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
+				<li class="me-3 light">
+					<div class="form-check form-switch light">
+						<input class="form-check-input light" type="checkbox" id="dark-mode-switch" />
+						<label class="form-check-label light" for="dark-mode-switch">
+							<i class="bi bi-moon light" id="moon-icon"></i>
+							<i class="bi bi-brightness-high light" id="sun-icon" style="display: none;"></i>
+						</label>
+					</div>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
+				<li class="nav-item dropdown light">
+					<a class="nav-link dropdown-toggle light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="bi bi-person light"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end light" aria-labelledby="navbarDropdown" data-bs-popper="static" style="text-align: center;">
+						<li>
+							<a href="#" onclick="check_account('Add',{{user_id}})" class="light"><i class="bi bi-person"></i> Account</a>
+						</li>
+						<li><hr class="dropdown-divider light" /></li>
+						<li>
+							<a href="#" onclick="check_notification('Add',{{user_id}})" class="light"><i class="bi bi-bell"></i> Notification</a>
+						</li>
+						<li>
+							<a href="#" onclick="check_help('Add',{{user_id}})" class="light"><i class="bi bi-headset"></i> Help Center</a>
+						</li>
+						<li>
+							<a href="#" onclick="check_about('Add',{{user_id}})" class="light"><i class="bi bi-info-circle"></i> About</a>
+						</li>
+						<li><hr class="dropdown-divider light" /></li>
+						<li><a href="#" onclick="check_switchHost('Add',{{user_id}})"class="tog">Switch - Host</a></li>
+						<li><a href="#" onclick="check_logout('Add',{{user_id}})" class="tog">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
       <div class="p-5 mt-2 rounded-3 jumbotron-container light">
 			<div class="container jumbotron mt-5 light">
-				<h2 class="display-6 fw-bold light">Hello ParkGuest</h2>
-				<p class="col-md-8 fs-5 light">Welcome to Parko, Start your journey by searching for parking spots in your desired city. Find convenient and secure parking options.</p>
+				<h2 class="display-6 fw-bold light">Hello {{name.name}},</h2>
+				<p class="col-md-8 fs-5 light">Welcome to RentalHome, Start your journey by searching for home  in your desired city. Find convenient and secure  options.</p>
 			</div>
 		</div>
       <div class="container search-space mt-4">
   <div class="row justify-content-center"> 
-    <div class="col-8">
-      <form class="d-flex">
+    <div class="col-10">
+      <form class="d-flex" id="searchForm" method="get" action="/get_search_city/{{current_user}}/">
         <label for="searchSpace" class="visually-hidden">Search</label>
-        <input type="text" class="form-control me-1 search-box" id="searchSpace" placeholder="Search a city.." list="datalistOptions">
+        <input type="text" class="form-control me-1 search-box" id="searchSpace" name="searchSpace" placeholder="Search a city.." list="datalistOptions">
         <datalist id="datalistOptions">
           <option value="Tirumangalam">
           <option value="Mattuthavani">
@@ -66,14 +123,9 @@ include "../libs/load.php";
         <button type="submit" class="btn btn-primary bi bi-search search-button"></button>
       </form>
     </div>
-    <div class="col-auto">
+    <div class="col-2">
       <form class="d-flex">
         <button type="button" class="btn btn-primary bi bi-filter filter-button" data-bs-toggle="modal" data-bs-target="#filterModal"> Filters</button>
-      </form>
-    </div>
-    <div class="col-auto">
-      <form class="d-flex">
-        <button type="button" class="btn btn-primary filter-button" data-target="content3">Search Near By</button>
       </form>
     </div>
   </div>
@@ -81,18 +133,33 @@ include "../libs/load.php";
 
     </div>
     <div class="modal fade filter-modal" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="filterModalLabel">Filters</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+          <form action="post_user_filter/{{current_user}}" method="post" >
               <div class="container mt-4">
+              <div class="mb-2 custom-dropdown">
+                  <label for="userCity">Types of Vehicle:</label>
+                  <select class="form-select" id="userCity" name="userCity">
+                  <option value="Tirumangalam">Tirumangalam</option>
+                  <option value="Mattuthavani">Mattuthavani</option>
+                  <option value="Thiruparankundram">Thiruparankundram</option>
+                  <option value="Aarapalayam">Aarapalayam</option>
+                  <option value="Usilampatti">Usilampatti</option>
+                  <option value="Simmakkal">Simmakkal</option>
+                  <option value="Melur">Melur</option>
+                  <option value="Peraiyur">Peraiyur</option>
+                  <option value="Vaadipatti">Vaadipatti</option>
+                  <option value="Palamedu">Palamedu</option>
+                  </select>
+                </div>
                 <div class="mb-2 custom-dropdown">
                   <label for="userType">Types of Parking:</label>
-                  <select class="form-select" id="parkType" name="userType" required>
+                  <select class="form-select" id="parkType" name="parkType" required>
                     <option value="public">Public</option>
                     <option value="publicContracted">Public Contracted</option>
                     <option value="privateCommercial">Private Commercial</option>
@@ -102,7 +169,7 @@ include "../libs/load.php";
                 <hr>
                 <div class="mb-2 custom-dropdown">
                   <label for="userType">Types of Vehicle:</label>
-                  <select class="form-select" id="vehicle" name="userType">
+                  <select class="form-select" id="vehicle" name="vehicle">
                     <option value="car">Car</option>
                     <option value="heavyVehicle">Heavy Vehicle</option>
                     <option value="motorWheeler">Motor Two Wheeler</option>
@@ -110,121 +177,74 @@ include "../libs/load.php";
                   </select>
                 </div>
                 <hr>
+                <div class="mb-3">
+                  <label for="minPrice" class="form-label">Min Price:</label>
+                  <input type="number" class="form-control" id="minPrice" name="minPrice" min="2" max="100" step="2" value="2" placeholder="Enter minimum price">
+                </div>
+                <hr>
+                <div class="mb-3">
+                  <label for="maxPrice" class="form-label">Max Price:</label>
+                  <input type="number" class="form-control" id="maxPrice" name="maxPrice" min="2" max="100" step="2" value="100" placeholder="Enter maximum price">
+                </div>
+                <hr>
+                <div class="mb-3">
+                  <label for="radius" class="form-label">Radius:</label>
+                  <input type="number" class="form-control" id="radius" name="radius" min="2" value="1" placeholder="Enter radius from your location in Km">
+                </div>
+                <hr>
                 <div class="container mt-4">
                   <div class="mb-2 custom-dropdown">
                     <label for="multipleOptions">Amenities :</label>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAmenities" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select Options </button>
+                      <button class="btn btn-secondary dropdown-toggle" type="button" name="dropdownMenuButton" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Options
+                      </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option1" value="option1">
-                          <label class="form-check-label" for="option1">Security Camera</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option2" value="option2">
-                          <label class="form-check-label" for="option2">Dust Free Zone</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option3" value="option3">
-                          <label class="form-check-label" for="option3">Free Air</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option4" value="option4">
-                          <label class="form-check-label" for="option4">E-Vehicle Charge Point</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option5" value="option5">
-                          <label class="form-check-label" for="option5">Vehicle Wash</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option6" value="option6">
-                          <label class="form-check-label" for="option6">Puncture Works</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option7" value="option7">
-                          <label class="form-check-label" for="option7">Two Wheeler Lock</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option8" value="option8">
-                          <label class="form-check-label" for="option8">Four Wheeler Cover</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option9" value="option9">
-                          <label class="form-check-label" for="option9">Helmet Storage</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option10" value="option10">
-                          <label class="form-check-label" for="option10">Locker Facility</label>
-                        </div>
-                        < </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Security Camera">
+                              <label class="form-check-label" for="option1">Security Camera</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Dust Free Zone">
+                              <label class="form-check-label" for="option2">Dust Free Zone</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Free Air">
+                              <label class="form-check-label" for="option3">Free Air</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="E-Vehicle Charge Point">
+                              <label class="form-check-label" for="option4">E-Vehicle Charge Point</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Vehicle Wash">
+                              <label class="form-check-label" for="option5">Vehicle Wash</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Puncture Works">
+                              <label class="form-check-label" for="option6">Puncture Works</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Two Wheeler Lock">
+                              <label class="form-check-label" for="option7">Two Wheeler Lock</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Four Wheeler Cover">
+                              <label class="form-check-label" for="option8">Four Wheeler Cover</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id=dropdownMenuButton value="Helmet Storage">
+                              <label class="form-check-label" for="option9">Helmet Storage</label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Locker Facility">
+                              <label class="form-check-label" for="option10">Locker Facility</label>
+                          </div>
+                      </div>
                       </div>
                     </div>
                   </div>
                   <hr>
-                  <div class="container mt-4">
-                  <div class="mb-2 custom-dropdown">
-                    <label for="multipleOptions">Timing :</label>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAmenities" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time Options </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option1" value="option1">
-                          <label class="form-check-label" for="option1">Office [9.00AM - 5.00PM]</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option2" value="option2">
-                          <label class="form-check-label" for="option2">Home [5.00AM - 10.00PM</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option3" value="option3">
-                          <label class="form-check-label" for="option3">AllTime [24/7]</label>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <hr />
-                <div class="mb-2 container">
-                <label  >Insurance:</label>
-                <div class="form-check ">
-                  <input class="form-check-input" type="checkbox" value="" id="check">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Insurance Provided
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  <label class="form-check-label" for="flexCheckChecked">
-                    Insurance not provided
-                  </label>
-                </div>
-                </div>
-                <hr />
-                
-                <hr>
-                  <div class="container mt-4 mb-2">
-                  <div class="mb-2 custom-dropdown">
-                    <label for="multipleOptions"> Star Ratings :</label>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAmenities" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select Rating </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option1" value="option1">
-                          <label class="form-check-label" for="option1">4 - 5</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option2" value="option2">
-                          <label class="form-check-label" for="option2">2 - 4</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="option3" value="option3">
-                          <label class="form-check-label" for="option3">0 - 2</label>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
                   <button style="text-align:center;" type="submit" class="btn btn-primary filter-submit" data-bs-dismiss="modal">Apply</button>
                 </div>
             </form>
@@ -233,60 +253,46 @@ include "../libs/load.php";
         
       </div>
     </div>
-    <div class="container mt-4 ">
-      <div class="card list-container">
+    <div class="container mt-4">
+    <div class="card list-container">
         <div class="card-header">
           <button type="button" class="btn btn-primary bi bi-list-task show-button" id="showList" data-target="content1"> Show List</button>
           <button type="button" class="btn btn-primary bi bi-map show-button" id="showMap" data-target="content2"> Show Map</button>
         </div>
         <div class="card-body">
           <div id="content1" class="content" style="display: none;">
+          {% for data in data%}
             <div class="card mb-2 mt-1 book-card light custom-card">
-              <div class="card-header"> RAM Parking (24/7)</div>
+              <div class="card-header"> {{data.namespaceName}} </div>
               <div class="card-body">
-                <p class="card-text">Private Commercial</p>
+                <p class="card-text">{{data.userType}}</p>
+                <p class="card-text">₹69 per hour</p>
+                <p class="card-text">
                 <div id="rating-container" class="align-items-center">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-                  <span id="rating-count">(1307)</span>
+                  <span id="star-container"></span>
+                  <span id="rating-count">(10907)</span>
                 </div>
-                
-                <a href="reserve.php" class="btn btn-info card-button">More</a>
-                <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary card-button">Directions</a>
+                </p>
+                <form action="/get_user_reserve/{{data.id}}/{{current_user}}/" method="get" >
+                <button  class="btn btn-info">More</button>
+                <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary">Directions</a>
+                </form>
               </div>
             </div>
-
-            <div class="card mb-2 mt-1 book-card light custom-card">
-              <div class="card-header"> Yoga Parking(9.00-5.00) </div>
-              <div class="card-body">
-                <p class="card-text">Private Residential</p>
-                <div id="rating-container" class="align-items-center">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-                  <span id="rating-count">(1875)</span>
-                </div>
-                <a href="reserve.php" class="btn btn-info card-button">More</a>
-                <a href="map.php?lat=9.9315573&lon=78.1022729" class="btn btn-primary card-button">Directions</a>
-              </div>
-            </div>
-            
+            {% endfor %} 
           </div>
           <div id="content2" class="content">
             <div class="container-map">
-              <div id="map" style="height:60vh"></div>
-              <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-            </div>
-          </div>
-          <div id="content3" class="content">
-            <div class="container-map">
-              <div id="map" style="height:60vh"></div>
+              <div id="map" style="height:50vh"></div>
               <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
             </div>
           </div>
         </div>
       </div>
     </div> 
-    <?php load_temp("footer.php"); ?>
+    {% include "footer.php" %}
     <!-- Add the Bootstrap JS and jQuery scripts -->
-    <script src="../js/map.js"></script>
+    <script src="/frontend/user/js/map.js"></script>
     <script>
 
 // $(document).ready(function() {
@@ -468,7 +474,75 @@ const darkModeSwitch = document.getElementById('dark-mode-switch');
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
       });
       googleStreets.addTo(map);
+
+
+      const searchForm = document.getElementById('searchForm');
+      const searchInput = document.getElementById('searchSpace');
+
+      searchForm.addEventListener('submit', (event) => {
+        // Modify the form action to include the user data
+        searchForm.action = `/get_search_city/{{current_user}}/`;
+
+        const selectedValue = searchInput.value;
+        const currentUrl = window.location.href;
+        const newUrl = currentUrl.split('?')[0] + `?searchSpace=${selectedValue}`;
+        window.location.href = newUrl; // Redirect to the new URL
+      });
+
+      function check_switchHost(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_home/" + '{{current_user}}';
+              }
+          }
+
+      function check_home(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_home/" + '{{current_user}}';
+              }
+          }
+
+      function check_booking(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_booking/" + '{{current_user}}';
+              }
+          }
+
+      function check_account(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_account/" + '{{current_user}}';
+              }
+          }
+
+      function check_notification(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_notification/" + '{{current_user}}';
+              }
+          }
+
+          function check_help(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_help/" + '{{current_user}}';
+              }
+          }
+
+          function check_about(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_help/" + '{{current_user}}';
+              }
+          }
+
+          function check_logout(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_login";
+              }
+          }
     </script>
     </body>
-
-    

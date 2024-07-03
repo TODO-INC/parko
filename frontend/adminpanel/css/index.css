@@ -1,0 +1,10 @@
+.heightcard {
+    max-width: 470px;
+    width: 90%;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+#myPieChart {
+    width: 100%;
+    height: 270px;
+}

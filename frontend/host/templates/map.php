@@ -10,15 +10,13 @@ include "../libs/load.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.112.5">
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/pics/icon.ico" />
-    <title>Parko</title>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link href="../vendor/assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-		<link href="https://fonts.googleapis.com/css?family=Albert Sans" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
     <script src="vendor/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../css/map.css">
+    <link rel="stylesheet" href="/frontend/host/css/map.css">
     </script><link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css"/>
     <title>MapHost</title>
@@ -31,9 +29,9 @@ include "../libs/load.php";
 </head>
 <body>
     <div class="container custom-container">
-        <form class="custom-form">
+        <form class="custom-form" action="/post_host_data/{{current_user}}" method="POST" enctype="multipart/form-data">
         <div class="mb-2 custom-dropdown">
-            <label for="userType">Type of Parking:</label>
+            <label for="userType">Types of User:</label>
             <select class="form-select" id="userType" name="userType">
                 <option value="public">Public</option>
                 <option value="publicContracted">Public Contracted</option>
@@ -41,42 +39,43 @@ include "../libs/load.php";
                 <option value="privateNonCommercial">Private Non-Commercial</option>
             </select>
         </div>
-
+        <div class="mb-2" id="spaceLicenseInput" name="spaceLicenseInput">
+            <label for="spaceLicense" class="form-label">Parking License number:</label>
+            <input type="text" class="form-control" id="spaceLicense" disabled>
+        </div>
+        
         <div class="mb-2 custom-dropdown">
-            <label for="workTime">Work Hours:</label>
-            <select class="form-select" id="userType" name="userType">
-                <option value="office">Office Time (9.00 AM  - 6.00 PM)</option>
-                <option value="home">Home Time (5.00 AM  - 10.00 PM)</option>
-                <option value="any">Anytime (24/7)</option>
+            <label for="workTime">Type of home:</label>
+            <select class="form-select" id="userhours" name="userhours">
+                <option value="office">Appartment</option>
+                <option value="home">stand alone home</option>
+                
             </select>
         </div>
 
-
-
-
         <div class="mb-2">
             <label for="spaceName" class="form-label">Name of your space</label>
-            <input type="text" class="form-control" id="spaceName" required>
+            <input type="text" name="spaceName" class="form-control" id="spaceName" required>
         </div>
         <div class="mb-2">
-            <label for="spaceDesc" class="form-label">Simple Description on your space</label>
-            <input type="text" class="form-control" id="spaceDesc" required>
+            <label for="spaceDesc" class="form-label">Simple Description on your home</label>
+            <input type="text" class="form-control" id="spaceDesc"  name="spaceDesc" required>
         </div>
         <div class="mb-2">
             <label for="spaceSize" class="form-label">Space Size in Sq meter</label>
-            <input type="number" class="form-control" min="1" id="spaceSize" required>
+            <input type="number" name="spaceSize" class="form-control" min="1" id="spaceSize" required>
         </div>
         <div class="mb-2">
             <label for="spaceAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="spaceAddress" required>
+            <input type="text" name="spaceAddress" class="form-control" id="spaceAddress" required>
         </div>
         <div class="mb-2">
-            <label for="spaceCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="spaceCity" required>
+            <label for="spaceAddress" class="form-label">City</label>
+            <input type="text" name="spaceCity" class="form-control" id="spaceCity" required>
         </div>
         <div class="mb-2">
             <label for="spacePincode" class="form-label">Pin Code</label>
-            <input type="number" class="form-control" min="100000" max="999999" id="spacePincode" required>
+            <input type="number" name="spacePincode" class="form-control" min="100000" max="999999" id="spacePincode" required>
         </div>
 
 
@@ -84,7 +83,7 @@ include "../libs/load.php";
             <label for="mapLocation" class="form-label">Location</label>
             <div class="container-map">
                 <div id="map" style="height:50vh"></div>
-                <input type="text" class="form-control mb-2 mt-2" id="coordinates-container"readonly>
+                <input type= "text" id="coordinates_container" name="coordinates_container" class="form-control mb-2 mt-2" readonly></input>
                 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
             </div>
         </div>
@@ -92,43 +91,62 @@ include "../libs/load.php";
         <div class="mb-2">
             <div class="row g-3 align-items-center">
                 <div class="col-6">
-                    <label for="spaceLength" class="col-form-label">Space Length (In Meter)</label>
-                    <input type="number" id="spaceLength" class="form-control"  min=15 required>
+                    <label for="spaceLength" class="col-form-label">Space Length(In Meter)</label>
+                    <input type="number" id="spaceLength" name="spaceLength" class="form-control"  min=15 required>
                 </div>
                 <div class="col-6">
-                    <label for="spaceWidth" class="col-form-label">Space Width (In Meter)</label>
-                    <input type="number" id="spaceWidth" class="form-control"  min=7 required>
+                    <label for="spaceWidth" class="col-form-label">Space Width(In Meter)</label>
+                    <input type="number" id="spaceWidth"  name="spaceWidth" class="form-control"  min=7 required>
                 </div>
             </div>
         </div>
         <div class="mb-2">
             <div class="row g-3 align-items-center">
                 <div class="col-6">
-                    <label for="totalCar" class="col-form-label">Total cars can park at a time(Approx)</label>
-                    <input type="number" id="totalCar" class="form-control"  min=15 required>
+                    <label for="totalCar" class="col-form-label">Total rooms</label>
+                    <input type="number" id="totalCar" name="totalCar" class="form-control"  min=15 required>
                 </div>
                 <div class="col-6">
-                    <label for="totalBike" class="col-form-label">Total bikes can park at a time(Approx)</label>
-                    <input type="number" id="totalBike" class="form-control"  min=7 required>
+                    <label for="totalBike" class="col-form-label">Total bathrooms</label>
+                    <input type="number" id="totalBike" name="totalBike" class="form-control"  min=7 required>
                 </div>
             </div>
         </div>
 
         <div class="mb-2">
-            <label for="spaceFileMultiple" class="form-label">Multiple files input example</label>
-            <input class="form-control" type="file" id="spaceFileMultiple" multiple>
+            <label for="spaceFileMultiple" class="form-label">Image1</label>
+            <input class="form-control" name="spaceFileMultiple1" type="file" id="spaceFileMultiple1" enctype="multipart/form-data" required>
         </div>
         <div id="error-msg" style="color: red;"></div>
+
+        <div class="mb-2">
+            <label for="spaceFileMultiple" class="form-label">Image2</label>
+            <input class="form-control" name="spaceFileMultiple2" type="file" id="spaceFileMultiple2" enctype="multipart/form-data" required>
+        </div>
+
+        <div class="mb-2">
+            <label for="spaceFileMultiple" class="form-label">Image3</label>
+            <input class="form-control" name="spaceFileMultiple3" type="file" id="spaceFileMultiple3" enctype="multipart/form-data" required>
+        </div>
+
+        <div class="mb-2">
+            <label for="spaceFileMultiple" class="form-label">Image4</label>
+            <input class="form-control" name="spaceFileMultiple4" type="file" id="spaceFileMultiple4" enctype="multipart/form-data" required>
+        </div>
 
         <div class="mb-2">
             <div class="row g-3 align-items-center">
                 <div class="col-6">
                     <label for="spaceSurvey" class="form-label">Survey Number</label>
-                    <input class="form-control" type="text" id="spaceSurvey" required>
+                    <input class="form-control" name="spaceSurvey" type="text" id="spaceSurvey" required>
                 </div>
                 <div class="col-6">
                     <label for="spaceAdhar" class="form-label">Adhar associated with the land</label>
-                    <input class="form-control" type="number" id="spaceAdhar" required>
+                    <input class="form-control" name="spaceAdhar" type="number" id="spaceAdhar" required>
+                </div>
+                <div class="col-6">
+                    <label for="otp" class="form-label">OTP Verification</label>
+                    <input class="form-control" name="otp" type="number" id="otp" required>
                 </div>
             </div>
         </div>
@@ -138,48 +156,48 @@ include "../libs/load.php";
         <div class="mb-2 custom-dropdown">
     <label for="multipleOptions">Amenities Provided:</label>
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" name="dropdownMenuButton" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Options
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option1" value="option1">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Security Camera">
                 <label class="form-check-label" for="option1">Security Camera</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option2" value="option2">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Dust Free Zone">
                 <label class="form-check-label" for="option2">Dust Free Zone</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option3" value="option3">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Free Air">
                 <label class="form-check-label" for="option3">Free Air</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option4" value="option4">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="E-Vehicle Charge Point">
                 <label class="form-check-label" for="option4">E-Vehicle Charge Point</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option5" value="option5">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Vehicle Wash">
                 <label class="form-check-label" for="option5">Vehicle Wash</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option6" value="option6">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Puncture Works">
                 <label class="form-check-label" for="option6">Puncture Works</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option7" value="option7">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Two Wheeler Lock">
                 <label class="form-check-label" for="option7">Two Wheeler Lock</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option8" value="option8">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Four Wheeler Cover">
                 <label class="form-check-label" for="option8">Four Wheeler Cover</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option9" value="option9">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id=dropdownMenuButton value="Helmet Storage">
                 <label class="form-check-label" for="option9">Helmet Storage</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="option10" value="option10">
+                <input class="form-check-input" name="dropdownMenuButton" type="checkbox" id="dropdownMenuButton" value="Locker Facility">
                 <label class="form-check-label" for="option10">Locker Facility</label>
             </div>
         </div>
@@ -187,84 +205,46 @@ include "../libs/load.php";
 </div>
 
         <div class="mb-2 mt-2 custom-checkboxes">
-            <label for="parkingTypes">Types of ParkGuest accepted:</label>
+            <label for="parkingTypes">Types of users:</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="subscriptionUser" value="subscriptionUser">
+                <input class="form-check-input" type="checkbox" id="subscriptionUser" name="subscriptionUser" value="subscriptionUser">
                 <label class="form-check-label" for="subscriptionUser">Subscription User</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="currentUser" value="currentUser">
+                <input class="form-check-input" type="checkbox" id="currentUser" name="currentUser" value="currentUser">
                 <label class="form-check-label" for="currentUser">Current User</label>
             </div>
         </div>
 
         <div class="mb-2">
-            <label for="spaceInstructions" class="form-label">Add instructions for the ParkGuest</label>
-            <textarea type="text" class="form-control" id="spaceInstructions" required></textarea>
+            <label for="spaceInstructions" class="form-label">Add instructions for the Guest</label>
+            <input type="textarea" class="form-control" id="spaceInstructions" name="spaceInstructions" required>
         </div>
 
-        <p>By clicking the 'Submit' button, you confirm that all the details are correct and accurate to the best of your knowledge. And also you agree to the security policy and assure are not violating the terms and conditions. Thank you for providing the necessary information.</p>
+        <p>By clicking the 'Submit' button, you confirm that all the details are correct and accurate to the best of your knowledge. And also you agree to the <a href="#">security policy</a> and assure are not violating the terms and conditions. Thank you for providing the necessary information.</p>
 
 
-        <button id="submit" type="submit" class="btn btn-primary mt-2" onclick="validateFiles()">Submit</button>
+        <button id="submit" type="submit" class="btn btn-primary mt-2" >Submit</button>
         </form>
     </div>
 
 
-<script src="../js/map.js"></script>
+<script src="/frontend/host/js/map.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-    var map = L.map('map').setView([9.939093, 78.121719], 10);
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var x = position.coords.latitude;
-            var y = position.coords.longitude;
-            map.setView([x, y], 10);
-            var userMarker = L.marker([x, y], { draggable: true }).addTo(map).bindPopup("Your Location");
-            var userCoordinates = { lat: x, lng: y };
-            var flag=0;
-            var geocoder = L.Control.geocoder({
-                defaultMarkGeocode: false
-            }).on('markgeocode', function(e) {
-                map.eachLayer(function(layer) {
-                    if (layer instanceof L.Marker) {
-                        map.removeLayer(layer);
-                    }
-                });
-                var marker = L.marker(e.geocode.center, { draggable: true }).addTo(map);
-                marker.bindPopup(e.geocode.name).openPopup();
-                map.setView(e.geocode.center, 13);
-                function updateCoordinates() {
-                    var coordinatesContainer = document.getElementById('coordinates-container');
-                    coordinatesContainer.textContent = marker.getLatLng().lat + ', ' + marker.getLatLng().lng;
-                    if(flag==0){
-                        coordinatesContainer.textContent = userMarker.getLatLng().lat + ', ' + userMarker.getLatLng().lng;
-                    }
-                }marker.on('move', function(e) {
-                    flag=1;
-                    if(flag==1){
-                        updateCoordinates();
-                    }
-                });
-                updateCoordinates();
-            }).addTo(map);
+const parkingSelect = document.getElementById("userType");
+    const licenseInput = document.getElementById("spaceLicense");
 
-        },function(error) {
-            console.error("Error getting user's location:", error.message);
-        });
-    } else {
-      console.error("Geolocation is not supported in this browser.");
-    }var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-      maxZoom: 20,
-      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    });
-    googleStreets.addTo(map);
+    parkingSelect.addEventListener("change", function () {
+        alert("123");
+        if (parkingSelect.value === "publicContracted" ||parkingSelect.value === "privateCommercial"  ) {
+            licenseInput.removeAttribute("disabled");
+        } else {
+            licenseInput.setAttribute("disabled", "disabled");
+        }
+    });    
 </script>
 
 </body>
-
-
-
-

@@ -1,7 +1,7 @@
 <footer class="navbar navbar-expand-md custom-common-footer mt-5 light">
         <div class="container-fluid custom-footer light">
             <div class="navbar-brand">
-            <a class="nav-link light todo" style="font-size:15px">© 2023 TODO-INC, All Rights Reserved</a>
+            <a class="nav-link light todo" style="font-size:15px">© 2024 HomeRental, All Rights Reserved</a>
             </div>
             <ul class="navbar-nav ">
             <li class="nav-item mx-2">

@@ -43,21 +43,29 @@ function calculateCost() {
   const hoursDiff = (endTimeMillis - startTimeMillis) / (1000 * 60 * 60);
 
   let ratePerHour;
-  if (vehicleType === 'heavy') {
+  if (vehicleType === 'trailer') {
+    ratePerHour = 80;
+  } else if (vehicleType === 'truck') {
+    ratePerHour = 50;
+  } else if (vehicleType === 'cabinTruck') {
+    ratePerHour = 30;
+  } else if (vehicleType === 'fullCar') {
+    ratePerHour = 20;
+  } else if (vehicleType === 'mediumCar') {
+    ratePerHour = 15;
+  }else if (vehicleType === 'compactCar') {
     ratePerHour = 10;
-  } else if (vehicleType === 'normal') {
-    ratePerHour = 8;
-  } else if (vehicleType === 'two-wheeler') {
+  }else if (vehicleType === 'twoWheeler') {
     ratePerHour = 5;
-  } else if (vehicleType === 'bicycle') {
+  }else if (vehicleType === 'bicycle') {
     ratePerHour = 2;
-  } else {
+  }else {
     ratePerHour = 0;
   }
 
   const cost = hoursDiff * ratePerHour;
 
-  document.getElementById('cost').value = "₹" + cost.toFixed(2);
+  document.getElementById('cost').value = cost.toFixed(2);
 }
 
 

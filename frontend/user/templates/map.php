@@ -41,63 +41,72 @@
 </body>
 </html>
 <script>
-var x1 = 13.067439, y1 = 80.237617, x = 9.9252007, y = 78.11977539999998;
-var map = L.map('map').setView([x1, y1], 6);
-var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-});
-googleStreets.addTo(map);
-var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3']
-});
+        var map = L.map('map').setView([9.939093, 78.121719], 10);
 
-var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3']
-});
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }).addTo(map);
 
-var googleTraffic = L.tileLayer('https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
-    minZoom: 2,
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-});
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
 
-var baseLayers = {
-    "Street View": googleStreets,
-    "Satellite View": googleSat,
-    "Terrain View": googleTerrain,
-    "Traffic View": googleTraffic
-};
+        var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
 
-L.control.layers(baseLayers).addTo(map);
-var startMarker = L.marker([x, y], { draggable: false });
-var endMarker = L.marker([x1, y1], { draggable: false });
-var routingControl = L.Routing.control({
-    waypoints: [
-        L.latLng(x, y),
-        L.latLng(x1, y1)
-    ],
-    routeWhileDragging: false,
-    createMarker: function (i, waypoint, n) {
-        var markerOptions = {
-            draggable: false, // Set draggable to false to prevent marker dragging
+        var googleTraffic = L.tileLayer('https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            minZoom: 2,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        });
+
+        var baseLayers = {
+            "Street View": googleStreets,
+            "Satellite View": googleSat,
+            "Terrain View": googleTerrain,
+            "Traffic View": googleTraffic
         };
-        var marker = L.marker(waypoint.latLng, markerOptions);
-        return marker;
-    }
-}).addTo(map);
-startMarker.addTo(map);
-endMarker.addTo(map);
-routingControl.on('routeselected', function (e) {
-    startMarker.dragging.disable();
-    endMarker.dragging.disable();
-});
-routingControl.on('routingerror', function (e) {
-    startMarker.dragging.enable();
-    endMarker.dragging.enable();
-});
 
+        L.control.layers(baseLayers).addTo(map);
+
+        var x1 = 13.067439, y1 = 80.237617;
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var x = position.coords.latitude;
+                var y = position.coords.longitude;
+
+                var destinationIcon = L.icon({
+                    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                });
+
+                var userMarker = L.marker([x, y], { draggable: false });
+                userMarker.addTo(map).bindPopup("Your Location");
+
+                var destinationMarker = L.marker([x1, y1], { icon: destinationIcon, draggable: false });
+                destinationMarker.addTo(map).bindPopup("Destination");
+
+                var routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(x, y),
+                        L.latLng(x1, y1)
+                    ],
+                    routeWhileDragging: false
+                }).addTo(map);
+
+                map.setView([x, y], 10);
+            }, function (error) {
+                console.error("Error getting user's location:", error.message);
+            });
+        } else {
+            console.error("Geolocation is not supported in this browser.");
+        }
 
 </script>

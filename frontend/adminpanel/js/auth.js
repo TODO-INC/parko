@@ -176,40 +176,37 @@ document.getElementById('signup-form').addEventListener('submit', function (even
 });
 
 function check_user(action, id) {
-  if(action="Add"){
-    // alert("*");
-  $("form").submit(function (event) {
-      
-  var formData = {
-      l_email: $("#l_email").val(),
-      l_password: $("#l_password").val(),
-     
-  };
-  console.log(formData);
-  $.ajax({
-      type: "POST",
-      url: "/post_login",
-      data: formData,
-      dataType: "json",
-      encode: true,
-  }).done(function (data1) {
-     
-          if (data1 == "Not in database"){
-              alert("Give the correct email and password");
+  if (action === "Add") {
+    // Removed the unnecessary alert("*").
+    // Assuming you want to handle form submission based on the action "Add".
+    $("form").submit(function (event) {
+      event.preventDefault(); // Prevent the default form submission.
+
+      var formData = {
+        l_email: $("#l_email").val(),
+        l_password: $("#l_password").val(),
+      };
+
+      console.log(formData);
+
+      $.ajax({
+        type: "POST",
+        url: "/post_login",
+        data: formData,
+        dataType: "json",
+        encode: true,
+      }).done(function (data1) {
+        if (data1 === "Not in database") {
+          alert("Give the correct email and password");
+        } else if (data1) {
+          // Assuming you want to redirect to "/get_home" with the received data1.
+          window.location.href = "/get_user_home/" + data1;
+        }
+      });
+    });
   }
-          if (data1 === "Done") {
-            window.location.href = "/get_home";
-          }
-          
-
-  
-  });
-
-  event.preventDefault();
-  });
-
-} 
 }
+
 function add_user(action, id) {
   if(action="Add"){
     // alert("*");
@@ -234,8 +231,8 @@ function add_user(action, id) {
           if (data1 == "Already this name Exist"){
               alert("check the data");
   }
-          if (data1 === "Done") {
-            window.location.href = "/get_home";
+          if (data1) {
+            window.location.href = "/get_user_home/" + data1;
           }
           
 

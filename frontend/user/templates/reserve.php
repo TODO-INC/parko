@@ -8,7 +8,7 @@ include "../libs/load.php";
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="generator" content="Hugo 0.112.5">
-      <link rel="shortcut icon" type="image/x-icon" href="../asset/icons/icon.ico" />
+      <link rel="shortcut icon" type="image/x-icon" href="/frontend/user/asset/icons/icon.ico" />
       <title>Parko</title>
 
       <title>Your Page Title</title>
@@ -21,9 +21,9 @@ include "../libs/load.php";
       <!-- BaguetteBox CSS (CDN) -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
       <!-- Your Custom CSS Files -->
-      <link rel="stylesheet" href="../css/header.css">
-      <link rel="stylesheet" href="../css/footer.css">
-      <link rel="stylesheet" href="../css/reserve.css">
+      <link rel="stylesheet" href="/frontend/user/css/header.css">
+      <link rel="stylesheet" href="/frontend/user/css/footer.css">
+      <link rel="stylesheet" href="/frontend/user/css/reserve.css">
       <!-- jQuery -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
       <!-- Popper.js -->
@@ -41,159 +41,171 @@ include "../libs/load.php";
 </head>
 
 
-<body data-bs-scheme="light">
-  <?php load_temp("header.php"); ?> 
-  <div class="container mt-2">
+<body> 
+<header class="navbar navbar-expand-md custom-common-container light">
+	<div class="container-md custom-common-header light">
+		<a class="navbar-brand light" href="#">
+			<img class="icon light" height="40px" src="/frontend/user/asset/pics/parko.png" alt="Parko Logo" />
+		</a>
+
+		<button class="navbar-toggler light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon light"></span>
+		</button>
+
+		<div class="collapse navbar-collapse light" id="navbarNav">
+		<ul class="navbar-nav mx-auto light">
+      <li class="nav-item light mx-2">
+          <a class="nav-link light" href="#" onclick="check_home('Add',{{user_id}})" >Home</a>
+      </li>
+      <li class="nav-item light mx-2">
+          <a class="nav-link light" href="#" onclick="check_booking('Add',{{user_id}})" >Booking</a>
+      </li>
+    </ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
+				<li class="me-3 light">
+					<div class="form-check form-switch light">
+						<input class="form-check-input light" type="checkbox" id="dark-mode-switch" />
+						<label class="form-check-label light" for="dark-mode-switch">
+							<i class="bi bi-moon light" id="moon-icon"></i>
+							<i class="bi bi-brightness-high light" id="sun-icon" style="display: none;"></i>
+						</label>
+					</div>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto d-flex align-items-center light">
+				<li class="nav-item dropdown light">
+					<a class="nav-link dropdown-toggle light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="bi bi-person light"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end light" aria-labelledby="navbarDropdown" data-bs-popper="static" style="text-align: center;">
+						<li>
+							<a href="#" onclick="check_account('Add',{{user_id}})" class="light"><i class="bi bi-person"></i> Account</a>
+						</li>
+						<li><hr class="dropdown-divider light" /></li>
+						<li>
+							<a href="#" onclick="check_notification('Add',{{user_id}})" class="light"><i class="bi bi-bell"></i> Notification</a>
+						</li>
+						<li>
+							<a href="#" onclick="check_help('Add',{{user_id}})" class="light"><i class="bi bi-headset"></i> Help Center</a>
+						</li>
+						<li>
+							<a href="#" onclick="check_about('Add',{{user_id}})" class="light"><i class="bi bi-info-circle"></i> About</a>
+						</li>
+						<li><hr class="dropdown-divider light" /></li>
+						<li><a href="#" onclick="check_switchHost('Add',{{user_id}})"class="tog">Switch - Host</a></li>
+						<li><a href="#" onclick="check_logout('Add',{{user_id}})" class="tog">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+  <div class="container mt-3">
     <div class="mb-4 rounded-3 jumbo-tron-container">
       <div class="container-fluid jumbo-tron">
         <div class="row align-items-center justify-content-between">
           <div class="col-md-8">
-            <h1 class="fw-bold">RAM Parkings (24/7)</h1>
+            <h1 class="fw-bold">{{data.namespaceName}}</h1>
+            <!-- <a class="btn btn-primary btn-lg" href="listing.php">Listing</a> -->
             <div class="rating-info d-flex align-items-center">
               <div id="rating-container" class="align-items-center">
                 <span id="star-container"></span>
                 <span id="rating-count">(1307)</span>
               </div>
-              <h6 class="mb-0 ms-2">Madurai, India</h6>
+              <h6 class="mb-0 ms-2">{{data.spaceCity}}, India</h6>
             </div>
           </div>
           <div class="col-md-4 text-end">
             <i id="bookmark-icon" class="bi bi-bookmark"></i>
           </div>
+
         </div>
-
-
-        <div class="container gallery-container mt-3 light">
-
         <div class="row gallery">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <a href="../asset/sample/1.jpeg">
-              <img class="img-fluid" src="../asset/sample/1.jpeg">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <a href="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
+              <img class="img-fluid" src="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
             </a>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <a href="../asset/sample/3.jpeg">
-              <img class="img-fluid" src="../asset/sample/3.jpeg">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <a href="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
+              <img class="img-fluid" src="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
             </a>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <a href="../asset/sample/4.jpeg">
-              <img class="img-fluid" src="../asset/sample/4.jpeg">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <a href="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
+              <img class="img-fluid" src="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
             </a>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <a href="../asset/sample/6.jpeg">
-              <img class="img-fluid" src="../asset/sample/6.jpeg">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <a href="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
+              <img class="img-fluid" src="/frontend/host/uploadimage/{{data.spaceFileMultiple1}}">
             </a>
           </div>
-        </div>
-
         </div>
       </div>
     </div>
   </div> 
 
   <div class="container mt-1">
-  <h2 class="mb-1">Host - RAM</h2>
+  <h2 class="mb-1">Host - {{data1.name}}</h2>
   <hr>
   <a><span class="badge bg-primary">Private Residential</span> <span class="badge bg-info">Subscription</span> <span class="badge bg-success">Current</span></a>
-  <p class="lead">Your vehicle's safety is our top priority. Our parking area is well-lit and equipped with security cameras that monitor the premises around the clock, ensuring that your vehicle is in good hands.</p>
+  <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem consequatur culpa nesciunt tempore expedita quibusdam maiores, unde quidem.</p>
   <hr>
 
   
   <!-- Display text in a card with a border and shadow -->
 
-  <div class="card mb-4 custom-card">
-    <div class="card-header">
-      Amenities
+  
+  <h5>Chosen Amenities</h5>
+<ul class="list-group">
+    {% for amenity in data2 %}
+    <li class="list-group-item">
+        <img src="/frontend/user/asset/icons/{{ data3[amenity] }}" style="height:25px;"> {{ amenity }}
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+  <div class="card mb-2 mt-2">
+    <div class="card-body">
+      <h4>Address</h4>
+      <p>{{data.spaceAddress}},</p>
+      <p>{{data.spaceCity}}</p>
+      <p>Pin : {{data.spacePincode}}</p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><img src="../asset/icons/cctv.png" style="height:25px;"> Security Camera</li>
-      <li class="list-group-item"><img src="../asset/icons/dust.png" style="height:25px;"> Dust Free Zone</li>
-      <li class="list-group-item"><img src="../asset/icons/air.png" style="height:25px;"> Free Air</li>
-      <li class="list-group-item"><img src="../asset/icons/wash.png" style="height:25px;"> Vehicle Wash</li>
-      <li class="list-group-item"><img src="../asset/icons/cover.png" style="height:25px;"> Four Wheeler Cover</li>
-      <li class="list-group-item"><img src="../asset/icons/lock.png" style="height:25px;"> Two Wheeler Lock</li>
-      <li class="list-group-item"><img src="../asset/icons/charger.png" style="height:25px;"> E-Vehicle Charge Point</li>
-      <li class="list-group-item"><img src="../asset/icons/helmet.png" style="height:25px;"> Helmet Rack</li>
-      <li class="list-group-item"><img src="../asset/icons/vault.png" style="height:25px;"> Locker Facility</li>
-    </ul>
   </div>
-  <div class="container">
-  <div class="row">
-    <div class="col-md-3 mb-2">
-      <div class="custom-card-left">
-        <div class="card-body">
-          <h4>Address</h4>
-          <p>644 A2/5 6th street,</p>
-          <p>MAdurai City</p>
-          <p>Madurai</p>
-          <p>Pin : 628501</p>
+  <div class="card mt-2 mb-2">
+    <div class="card-body">
+      <h4>Location</h4>
+      </div>
+  </div>
+
+  <div class="container mt-3 prof-monetize">
+      <h3 style="text-align:center;" class="mt-1 mb-1">COMMENTS</h3>
+      <hr>
+    <div class="row row-cols-1 mb-2">
+      <div class="col-12 mb-2 mt-2">
+        <div class="container comment-container">
+          <h5 class="bg-1 mt-1">Ram</h5>
+          <p class="bg-2 p-2">Easy to park</p>
         </div>
       </div>
     </div>
-    <div class="col-md-9 mb-2">
-      <div class="custom-card-right">
-        <div class="card-body">
-          <div id="map" style="height:40vh"></div>
+    <div class="row row-cols-1">
+      <div class="col-12 mb-2 mt-2">
+        <div class="container comment-container">
+          <h5 class="bg-1 mt-1">Yoga</h5>
+          <p class="bg-2 p-2">Safe parking </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<div class="container">
-				<h3 style="text-align:center;" class="mt-3 mb-3">Reviews</h3>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-2 comment-container light">
-							<div class="card-body">
-								<div class="container">
-									<h4 class="bg-1 mt-1">Yoga</h4>
-									<p class="bg-2">Easy to parking and park out</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card mb-2 comment-container light">
-							<div class="card-body">
-								<div class="container">
-									<h4 class="bg-1 mt-1">Ananth</h4>
-									<p class="bg-2">Safe parking area with well equipped security cameras</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-2 comment-container light">
-							<div class="card-body">
-								<div class="container">
-									<h4 class="bg-1 mt-1">Saran</h4>
-									<p class="bg-2">Location is easily findable. Present in main part of the city</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card mb-2 comment-container light">
-							<div class="card-body">
-								<div class="container">
-									<h4 class="bg-1 mt-1">Joshuva</h4>
-									<p class="bg-2">Good place to park, but please improve cleanliness of the space. </p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-      </div>
 <div class="container checkout mb-3 mt-3">
 <div class="fixed">
-    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal">Reserve</button>
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
   </div>
 </div>
 
@@ -208,69 +220,54 @@ include "../libs/load.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioExisting" checked>
-            <label class="form-check-label" for="radioExisting">
-                <div class="container added-detail">
-                        <h4>Honda Creta</h4>
-                        <p>TN 69 S 4321</p>
-                        <p>Four Wheeler</p>
-                        <p>Owner : Jeffry J</p>
-                        <p>Contact : 9829543210</p>
-                      </div>
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioNew">
-            <label class="form-check-label" for="radioNew">
-                <div class="container added-detail">
-                        <h4>Honda Activa</h4>
-                        <p>TN 96 T 1234</p>
-                        <p>Motor Two Wheeler</p>
-                        <p>Owner : Narayanan M</p>
-                        <p>Contact : 9876543210</p>
-                      </div>
-            </label>
-        </div>
-        <button class="btn btn-warning" id="addNewButton" type="button" onclick="toggleNewVehicleDetails()">Add New</button>
+            <form action="/post_register/{{data4}} " method="post">
+                <input type="hidden" class="form-control" id="host_id" name="host_id" value="{{data.host_id}}" >
+                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{data2}}" >
+                    <div class="mb-3">
 
-        <div id="newVehicleDetails" style="display: none;">
-            <div class="mb-3">
-                <label for="vehicleName" class="form-label">Vehicle Name:</label>
-                <input type="text" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
-                <input type="text" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="ownerName" class="form-label">Owner Name:</label>
-                <input type="text" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
-                <select class="form-select" id="vehicleType" required>
-                    <option value="heavy">Heavy Four Wheeler</option>
-                    <option value="normal">Four Wheeler</option>
-                    <option value="two-wheeler">Motor Two Wheeler</option>
-                    <option value="bicycle">Bicycle</option>
-                </select>
-            </div>
-        </div>
-        <div class="mb-3">
-                        <label for="startDate" class="form-label">Date of reservation:</label>
-                        <input type="date" class="form-control" id="startDate" min="" required>
+                        <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
+                        <select class="form-select" id="vehicleType"  name="vehicleType" required>
+                            <option value="trailer">Trailer Truck(Eight Wheeler)</option>
+                            <option value="truck">Truck(Heavy Four Wheeler)</option>
+                            <option value="cabinTruck">Cabin Van(Four Wheeler)</option>
+                            <option value="fullCar">Full Size SUV(Four Wheeler)</option>
+                            <option value="mediumCar">Medium Size car (Four Wheeler)</option>
+                            <option value="compactCar">Compact Car(Four Wheeler)</option>
+                            <option value="twoWheeler">Motor Two Wheeler</option>
+                            <option value="bicycle">Non Motor Bicycle</option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="startTime" class="form-label">Time of reservation:e:</label>
-                        <input type="time" class="form-control" id="startTime" min="" required>
+                        <label for="vechileNumber" class="form-label">Vechile Number:</label>
+                        <input type="text" class="form-control" id="vehicleNumber"  name="vehicleNumber">
                     </div>
-
-        <div class="modal-footer" style="display: flex;justify-content: center;">
-            <button type="submit" class="btn btn-info">Pay and Proceed</button>
-        </div>
-    </form>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date:</label>
+                        <input type="date" class="form-control" id="startDate"  name="startDate" min="<?= date('Y-m-d') ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startTime" class="form-label">Start Time:</label>
+                        <input type="time" class="form-control" id="startTime" name="startTime"  min="<?= date('H:i', strtotime('+1 hour')) ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date:</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate"min="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endTime" class="form-label">End Time:</label>
+                        <input type="time" class="form-control" id="endTime" name="endTime" min="<?= date('H:i', strtotime('+2 hours')) ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Cost:</label>
+                        <input type="text" class="form-control" id="cost" name="cost" readonly>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="calculateCost()">Calculate Cost</button>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info">Proceed</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -278,13 +275,14 @@ include "../libs/load.php";
 
 
 
-  <?php load_temp("footer.php"); ?> 
-  <script src="../js/reserve.js"></script>
+
+{% include "footer.php" %}
+  <script src="/frontend/user/js/reserve.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src = "../js/maploc.js"></script>
+  <script src = "/frontend/user/js/maploc.js"></script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
@@ -347,57 +345,62 @@ const darkModeSwitch = document.getElementById('dark-mode-switch');
         // Call the function to load dark mode preference on page load
         loadDarkModePreference();
 
-        function toggleNewVehicleDetails() {
-    var newVehicleDetails = document.getElementById("newVehicleDetails");
-    
-    if (newVehicleDetails.style.display === "block") {
-        newVehicleDetails.style.display = "none";
-    } else {
-        newVehicleDetails.style.display = "block";
-    }
-}
+        function check_switchHost(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_home/" + '{{current_user}}';
+              }
+          }
 
+      function check_home(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_home/" + '{{current_user}}';
+              }
+          }
+
+      function check_booking(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_booking/" + '{{current_user}}';
+              }
+          }
+
+      function check_account(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_account/" + '{{current_user}}';
+              }
+          }
+
+      function check_notification(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_notification/" + '{{current_user}}';
+              }
+          }
+
+          function check_help(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_help/" + '{{current_user}}';
+              }
+          }
+
+          function check_about(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_user_help/" + '{{current_user}}';
+              }
+          }
+
+          function check_logout(action) {
+              if (action === "Add") {
+                  alert("***");
+                  window.location.href = "/get_login";
+              }
+          }
 
             
 		</script>
 </body>
-
-
-
-<!-- <div class="mb-3">
-                        <label for="vehicleType" class="form-label">Select Vehicle Type:</label>
-                        <select class="form-select" id="vehicleType" required>
-                            <option value="heavy">Heavy Four Wheeler</option>
-                            <option value="normal">Four Wheeler</option>
-                            <option value="two-wheeler">Motor Two Wheeler</option>
-                            <option value="bicycle">Bicycle</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
-                        <input type="text" class="form-control" id="vehicleNumber"  required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactNumber" class="form-label">Contact Number:</label>
-                        <input type="text" class="form-control" id="contactNumber"  required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="startDate" class="form-label">Start Date:</label>
-                        <input type="date" class="form-control" id="startDate" min="" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="startTime" class="form-label">Start Time:</label>
-                        <input type="time" class="form-control" id="startTime" min="" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endDate" class="form-label">End Date:</label>
-                        <input type="date" class="form-control" id="endDate" min="" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endTime" class="form-label">End Time:</label>
-                        <input type="time" class="form-control" id="endTime" min="" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cost" class="form-label">Cost:</label>
-                        <input type="text" class="form-control" id="cost" readonly>
-                    </div> -->

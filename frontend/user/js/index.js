@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
     $('.btn').on('click', function() {
         var targetContent = $(this).data('target');
@@ -31,3 +32,6 @@ function displayRating() {
 
   // Call the function to display the rating
   displayRating();
+
+
+
